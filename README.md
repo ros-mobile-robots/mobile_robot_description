@@ -1,2 +1,2 @@
-# quimera_robot_simulation
-Simulation package for the quimera mobile robot
+# quimera_robot_description
+Description package for the quimera mobile robot
