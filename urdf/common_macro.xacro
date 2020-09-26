@@ -32,7 +32,7 @@
       </collision>
       <xacro:cylinder_inertia m="${wheel_prop['wheel']['mass']}" 
                               r="${wheel_prop['wheel']['radius']}" 
-                              h="${wheel_prop['wheel']['length']}">
+                              l="${wheel_prop['wheel']['length']}">
       </xacro:cylinder_inertia> 
     </link>
     
@@ -46,17 +46,20 @@
   </xacro:macro> 
 
 <!--Intertial macros-->
-  <xacro:macro name="cylinder_inertia" params="m r h">
+  <xacro:macro name="cylinder_inertia" params="m r l">
     <inertial>
       <mass value="${m}"/>
-      <inertia ixx="${m*(3*r*r+h*h)/12}" ixy = "0" ixz = "0" iyy="${m*(3*r*r+h*h)/12}" iyz = "0" izz="${m*r*r/2}"/> 
+      <inertia ixx="${m*(3*r*r+l*l)/12}" ixy = "0" ixz = "0" 
+               iyy="${m*(3*r*r+l*l)/12}" iyz = "0" izz="${m*r*r/2}"/> 
     </inertial>
   </xacro:macro>
 
-  <xacro:macro name="box_inertia" params="m w h d">
+ <xacro:macro name="box_inertia" params="m x y z">
     <inertial>
       <mass value="${m}"/>
-      <inertia ixx="${m / 12.0 * (d*d + h*h)}" ixy="0.0" ixz="0.0" iyy="${m / 12.0 * (w*w + h*h)}" iyz="0.0" izz="${m / 12.0 * (w*w + d*d)}"/>
+      <inertia ixx="${m / 12.0 * (y*y + z*z)}" ixy="0.0" ixz="0.0"
+               iyy="${m / 12.0 * (x*x + z*z)}" iyz="0.0" 
+               izz="${m / 12.0 * (x*x + y*y)}"/>
     </inertial>
   </xacro:macro>
 

@@ -50,7 +50,7 @@
  
   <!--Base link-->
   <link name="base_link">
-    <xacro:box_inertia m="10" w="${base_len}" h="${base_width}" d="0.01"/>
+    <xacro:box_inertia m="10" x="${base_len}" y="0.01" z="${base_width}" />
     <visual>
       <origin xyz="0 0 0" rpy="${PI/2} 0 -${PI/2}" />
       <geometry>
