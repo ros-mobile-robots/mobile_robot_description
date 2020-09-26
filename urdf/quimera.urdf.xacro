@@ -14,9 +14,7 @@
 
   <xacro:property name="PI" value="3.14"/>
   
-  <xacro:property name="main_wheel_radius" value="0.053"/>
-  <xacro:property name="main_wheel_height" value="0.033"/>
-  <xacro:property name="main_wheel_mass" value="0.27"/>
+  <!-- ####### Main Wheel Parameters ########## -->
   <!-- Offset distance from the outter border to the center of the wheel-->
   <xacro:property name="main_wheel_x_offset" value="0.128"/>
   <!-- Offset distance from the outter border to the face of the wheel -->
@@ -24,16 +22,15 @@
   <!-- Offset distance from the bottom border to the center of the wheel -->
   <xacro:property name="main_wheel_z_offset" value="0.05"/>
 
+  <!-- Main Wheel joint position -->
   <xacro:property name="pos_x_joint"
      value="${(base_props['base']['length']/2) - main_wheel_x_offset}"/>
   <xacro:property name="pos_y_joint"
-    value="${(base_props['base']['width']/2) - main_wheel_y_offset - (main_wheel_height/2)}"/>
+    value="${(base_props['base']['width']/2) - main_wheel_y_offset - (base_props['base']['height']/2)}"/>
   <xacro:property name="pos_z_joint" value="${main_wheel_z_offset}"/>
+  <!-- ######################################## -->
 
-
-  <xacro:property name="caster_radius" value="0.011"/>
-  <xacro:property name="caster_height" value="0.006"/>
-  <xacro:property name="caster_mass" value="0.01"/>
+  <!-- ####### Auxiliar Wheel Parameters ########## -->
   <!-- Offset distance from the outter border to the center of the wheel-->
   <xacro:property name="caster_x_offset" value="0.035"/>
   <!-- Offset distance from the outter border to the face of the wheel -->
@@ -41,10 +38,12 @@
   <!-- Offset distance from the bottom border to the center of the wheel -->
   <xacro:property name="caster_z_offset" value="0.008"/>
 
+  <!-- Main Wheel joint position -->
   <xacro:property name="caster_pos_x_joint" value="${(base_props['base']['length']/2) - caster_x_offset}"/>
   <xacro:property name="caster_pos_y_joint"
     value="${(base_props['base']['width']/2) - caster_y_offset - (base_props['base']['height']/2)}"/>
   <xacro:property name="caster_pos_z_joint" value="${caster_z_offset}"/>
+  <!-- ######################################## -->
  
   <!-- Base link -->
   <xacro:base base_prop="${base_props}" mesh="${base_props['base']['mesh']}" >
@@ -58,6 +57,7 @@
 
   <xacro:test x="2"/> -->
 
+  <!-- Main Wheel -->
   <xacro:wheel prefix="right" reflect="-1"
                       wheel_prop="${wheel_props}"
                       pos_x_joint="${pos_x_joint}"
@@ -74,6 +74,7 @@
                       mesh="${wheel_props['wheel']['mesh']}">
   </xacro:wheel>
 
+  <!-- Auxiliar Wheel -->
   <xacro:wheel prefix="caster_right" reflect="-1" 
                       wheel_prop="${front_wheel_props}" 
                       pos_x_joint="${caster_pos_x_joint}" 
