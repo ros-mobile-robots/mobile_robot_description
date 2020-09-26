@@ -13,11 +13,6 @@
   <xacro:property name="base_props" value="${load_yaml(base_yaml)}"/>
 
   <xacro:property name="PI" value="3.14"/>
-
-  <xacro:property name="base_width" value="0.198"/>
-  <xacro:property name="base_len" value="0.195"/>
-  <xacro:property name="base_height" value="0.182"/>
-  <xacro:property name="base_mass" value="2.5"/>
   
   <xacro:property name="main_wheel_radius" value="0.053"/>
   <xacro:property name="main_wheel_height" value="0.033"/>
@@ -29,8 +24,10 @@
   <!-- Offset distance from the bottom border to the center of the wheel -->
   <xacro:property name="main_wheel_z_offset" value="0.05"/>
 
-  <xacro:property name="pos_x_joint" value="${(base_len/2) - main_wheel_x_offset}"/>
-  <xacro:property name="pos_y_joint" value="${(base_width/2) - main_wheel_y_offset - (main_wheel_height/2)}"/>
+  <xacro:property name="pos_x_joint"
+     value="${(base_props['base']['length']/2) - main_wheel_x_offset}"/>
+  <xacro:property name="pos_y_joint"
+    value="${(base_props['base']['width']/2) - main_wheel_y_offset - (main_wheel_height/2)}"/>
   <xacro:property name="pos_z_joint" value="${main_wheel_z_offset}"/>
 
 
@@ -44,27 +41,12 @@
   <!-- Offset distance from the bottom border to the center of the wheel -->
   <xacro:property name="caster_z_offset" value="0.008"/>
 
-  <xacro:property name="caster_pos_x_joint" value="${(base_len/2) - caster_x_offset}"/>
-  <xacro:property name="caster_pos_y_joint" value="${(base_width/2) - caster_y_offset - (caster_height/2)}"/>
+  <xacro:property name="caster_pos_x_joint" value="${(base_props['base']['length']/2) - caster_x_offset}"/>
+  <xacro:property name="caster_pos_y_joint"
+    value="${(base_props['base']['width']/2) - caster_y_offset - (base_props['base']['height']/2)}"/>
   <xacro:property name="caster_pos_z_joint" value="${caster_z_offset}"/>
  
-  <!--Base link-->
-  <!-- <link name="base_link">
-    <xacro:box_inertia m="10" x="${base_len}" y="0.01" z="${base_width}" />
-    <visual>
-      <origin xyz="0 0 0" rpy="${PI/2} 0 -${PI/2}" />
-      <geometry>
-        <mesh filename="package://quimera_robot_description/meshes/quimera_struct.dae" />
-      </geometry>
-      <material name="white" />
-    </visual>
-    <collision>
-      <geometry>
-        <box size="${base_len} ${base_width} 0.01"/>
-      </geometry>
-    </collision>
-  </link> -->
-
+  <!-- Base link -->
   <xacro:base base_prop="${base_props}" mesh="${base_props['base']['mesh']}" >
     <origin xyz="0 0 0" rpy="${PI/2} 0 -${PI/2}" />
   </xacro:base> 

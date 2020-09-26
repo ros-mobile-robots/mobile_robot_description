@@ -74,7 +74,7 @@
     </xacro:if>  
     <collision>
       <geometry>
-        <box size="${base_len} ${base_width} 0.01"/>
+        <box size="${base_prop['base']['length']} ${base_prop['base']['width']} ${base_prop['base']['height']}"/>
       </geometry>
     </collision>
     </link>

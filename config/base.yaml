@@ -1,6 +1,6 @@
 base:
-  mass: 2.5
-  width: 0.198
-  length: 0.195
-  height: 0.182
-  mesh: wheel
+  mass: 2.5       # Base mass in Kg
+  width: 0.198    # Dimention in y axis
+  length: 0.195   # Dimention in x axis
+  height: 0.182   # Dimention in z axis
+  mesh: 'quimera_struct'
