@@ -49,7 +49,7 @@
   <xacro:property name="caster_pos_z_joint" value="${caster_z_offset}"/>
  
   <!--Base link-->
-  <link name="base_link">
+  <!-- <link name="base_link">
     <xacro:box_inertia m="10" x="${base_len}" y="0.01" z="${base_width}" />
     <visual>
       <origin xyz="0 0 0" rpy="${PI/2} 0 -${PI/2}" />
@@ -63,7 +63,11 @@
         <box size="${base_len} ${base_width} 0.01"/>
       </geometry>
     </collision>
-  </link>
+  </link> -->
+
+  <xacro:base base_prop="${base_props}" mesh="${base_props['base']['mesh']}" >
+    <origin xyz="0 0 0" rpy="${PI/2} 0 -${PI/2}" />
+  </xacro:base> 
 
 <!--   
   <xacro:macro name="test" params="x">

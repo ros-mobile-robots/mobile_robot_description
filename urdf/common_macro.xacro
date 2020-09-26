@@ -43,6 +43,41 @@
       <child link="${prefix}_wheel"/>
       <origin xyz="${pos_x_joint} ${reflect* pos_y_joint} ${pos_z_joint}" rpy="0 0 0"/>
     </joint>
+  </xacro:macro>
+
+<!--Base macro-->
+  <xacro:macro name="base"
+               params="base_prop mesh:='' *origin">
+    <link name="base_link">
+    <xacro:box_inertia m="${base_prop['base']['mass']}" 
+                       x="${base_prop['base']['length']}" 
+                       y="${base_prop['base']['width']}"
+                       z="${base_prop['base']['height']}"> 
+    </xacro:box_inertia>
+    <xacro:if value="${mesh != '' }" >
+      <visual>
+        <xacro:insert_block name="origin" />
+        <geometry>
+          <mesh filename="package://quimera_robot_description/meshes/${mesh}.dae" />
+        </geometry>
+        <material name="white" />
+      </visual>
+    </xacro:if>
+    <xacro:if value="${mesh == '' }" >
+      <visual>
+        <xacro:insert_block name="origin" />
+        <geometry>
+          <box size="${base_prop['base']['length']} ${base_prop['base']['width']} ${base_prop['base']['height']}"/>
+        </geometry>
+        <material name="white" />
+      </visual>
+    </xacro:if>  
+    <collision>
+      <geometry>
+        <box size="${base_len} ${base_width} 0.01"/>
+      </geometry>
+    </collision>
+    </link>
   </xacro:macro> 
 
 <!--Intertial macros-->
