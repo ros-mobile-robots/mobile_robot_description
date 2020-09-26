@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<!--Wheel link1 & joint macro-->
+  <xacro:macro name="wheel"
+               params="prefix reflect wheel_prop
+                       pos_x_joint pos_y_joint pos_z_joint mesh:=''">
+    <xacro:property name="radius" value="${wheel_props['wheel']['radius']}"/>
+    <link name="${prefix}_wheel">
+    <xacro:if value="${mesh != '' }" >
+      <visual>
+        <origin xyz="0.0 0 0" rpy="${pi/2} 0 0"/>
+         <geometry>
+        <mesh filename="package://quimera_robot_description/meshes/${mesh}.dae" />
+        </geometry>
+      </visual>
+    </xacro:if>
+    <xacro:if value="${mesh == '' }" >
+      <visual>
+        <origin xyz="0.0 0 0" rpy="${pi/2} 0 0"/>
+         <geometry>
+         <cylinder radius="${wheel_prop['wheel']['radius']}" length="${wheel_prop['wheel']['length']}"/>
+        </geometry>
+        <material name="red"/>
+      </visual>
+    </xacro:if>
+      <collision>
+        <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
+        <geometry>
+          <cylinder radius="${wheel_prop['wheel']['radius']}" length="${wheel_prop['wheel']['length']}"/>
+        </geometry>
+      </collision>
+      <xacro:cylinder_inertia m="${wheel_prop['wheel']['mass']}" 
+                              r="${wheel_prop['wheel']['radius']}" 
+                              h="${wheel_prop['wheel']['length']}">
+      </xacro:cylinder_inertia> 
+    </link>
+    
+
+    <joint name="${prefix}_wheel_joint" type="continuous">
+      <axis xyz="0 1 0" rpy="0 0 0" />
+      <parent link="base_link"/>
+      <child link="${prefix}_wheel"/>
+      <origin xyz="${pos_x_joint} ${reflect* pos_y_joint} ${pos_z_joint}" rpy="0 0 0"/>
+    </joint>
+  </xacro:macro> 
+
+<!--Intertial macros-->
+  <xacro:macro name="cylinder_inertia" params="m r h">
+    <inertial>
+      <mass value="${m}"/>
+      <inertia ixx="${m*(3*r*r+h*h)/12}" ixy = "0" ixz = "0" iyy="${m*(3*r*r+h*h)/12}" iyz = "0" izz="${m*r*r/2}"/> 
+    </inertial>
+  </xacro:macro>
+
+  <xacro:macro name="box_inertia" params="m w h d">
+    <inertial>
+      <mass value="${m}"/>
+      <inertia ixx="${m / 12.0 * (d*d + h*h)}" ixy="0.0" ixz="0.0" iyy="${m / 12.0 * (w*w + h*h)}" iyz="0.0" izz="${m / 12.0 * (w*w + d*d)}"/>
+    </inertial>
+  </xacro:macro>
+
+  <xacro:macro name="sphere_inertia" params="m r">
+    <inertial>
+      <mass value="${m}"/>
+      <inertia ixx="${2.0*m*(r*r)/5.0}" ixy="0.0" ixz="0.0" iyy="${2.0*m*(r*r)/5.0}" iyz="0.0" izz="${2.0*m*(r*r)/5.0}"/>
+    </inertial>
+  </xacro:macro>
+
+  <xacro:macro name="default_inertial" params="mass">
+    <inertial>
+      <mass value="${mass}"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+  </xacro:macro>
+
+<!--Color Properties-->
+  <material name="blue">
+    <color rgba="0 0 0.8 1"/>
+  </material>
+  <material name="black">
+    <color rgba="0 0 0 1"/>
+  </material>
+  <material name="white">
+    <color rgba="1 1 1 1"/>
+  </material>
+  <material name="red">
+    <color rgba="0.8 0.0 0.0 1.0"/>
+  </material>
+
+
+
+</robot>
