@@ -3,7 +3,7 @@
 
   <xacro:include filename="$(find quimera_robot_description)/urdf/common_macro.xacro" />
 
-  <xacro:property name="yaml" value="$(find quimera_robot_description)/config/wheel.yaml" />
+  <xacro:property name="yaml" value="$(find quimera_robot_description)/config/back_wheel.yaml" />
   <xacro:property name="wheel_props" value="${load_yaml(yaml)}"/>
 
   <xacro:property name="front_wheel_yaml" value="$(find quimera_robot_description)/config/front_wheel.yaml" />
@@ -26,7 +26,7 @@
   <xacro:property name="pos_x_joint"
      value="${(base_props['base']['length']/2) - main_wheel_x_offset}"/>
   <xacro:property name="pos_y_joint"
-    value="${(base_props['base']['width']/2) - main_wheel_y_offset - (base_props['base']['height']/2)}"/>
+    value="${(base_props['base']['width']/2) - main_wheel_y_offset - (wheel_props['wheel']['length']/2)}"/>
   <xacro:property name="pos_z_joint" value="${main_wheel_z_offset}"/>
   <!-- ######################################## -->
 
@@ -41,7 +41,7 @@
   <!-- Main Wheel joint position -->
   <xacro:property name="caster_pos_x_joint" value="${(base_props['base']['length']/2) - caster_x_offset}"/>
   <xacro:property name="caster_pos_y_joint"
-    value="${(base_props['base']['width']/2) - caster_y_offset - (base_props['base']['height']/2)}"/>
+    value="${(base_props['base']['width']/2) - caster_y_offset - (front_wheel_props['wheel']['length']/2)}"/>
   <xacro:property name="caster_pos_z_joint" value="${caster_z_offset}"/>
   <!-- ######################################## -->
  
