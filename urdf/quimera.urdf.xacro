@@ -3,8 +3,8 @@
 
   <xacro:include filename="$(find quimera_robot_description)/urdf/common_macro.xacro" />
 
-  <xacro:property name="yaml" value="$(find quimera_robot_description)/config/back_wheel.yaml" />
-  <xacro:property name="wheel_props" value="${load_yaml(yaml)}"/>
+  <xacro:property name="back_wheel_yaml" value="$(find quimera_robot_description)/config/back_wheel.yaml" />
+  <xacro:property name="wheel_props" value="${load_yaml(back_wheel_yaml)}"/>
 
   <xacro:property name="front_wheel_yaml" value="$(find quimera_robot_description)/config/front_wheel.yaml" />
   <xacro:property name="front_wheel_props" value="${load_yaml(front_wheel_yaml)}"/>
@@ -14,35 +14,35 @@
 
   <xacro:property name="PI" value="3.14"/>
   
-  <!-- ####### Main Wheel Parameters ########## -->
+  <!-- ####### Back Wheel Parameters ########## -->
   <!-- Offset distance from the outter border to the center of the wheel-->
-  <xacro:property name="main_wheel_x_offset" value="0.128"/>
+  <xacro:property name="b_wheel_x_offset" value="0.128"/>
   <!-- Offset distance from the outter border to the face of the wheel -->
-  <xacro:property name="main_wheel_y_offset" value="0.02"/>
+  <xacro:property name="b_wheel_y_offset" value="0.02"/>
   <!-- Offset distance from the bottom border to the center of the wheel -->
-  <xacro:property name="main_wheel_z_offset" value="0.05"/>
+  <xacro:property name="b_wheel_z_offset" value="0.05"/>
 
-  <!-- Main Wheel joint position -->
-  <xacro:property name="pos_x_joint"
-     value="${(base_props['base']['length']/2) - main_wheel_x_offset}"/>
-  <xacro:property name="pos_y_joint"
-    value="${(base_props['base']['width']/2) - main_wheel_y_offset - (wheel_props['wheel']['length']/2)}"/>
-  <xacro:property name="pos_z_joint" value="${main_wheel_z_offset}"/>
+  <!-- Back Wheel joint position -->
+  <xacro:property name="b_wheel_pos_x_joint"
+     value="${(base_props['base']['length']/2) - b_wheel_x_offset}"/>
+  <xacro:property name="b_wheel_pos_y_joint"
+    value="${(base_props['base']['width']/2) - b_wheel_y_offset - (wheel_props['wheel']['length']/2)}"/>
+  <xacro:property name="b_wheel_pos_z_joint" value="${b_wheel_z_offset}"/>
   <!-- ######################################## -->
 
-  <!-- ####### Auxiliar Wheel Parameters ########## -->
+  <!-- ####### Front Wheel Parameters ########## -->
   <!-- Offset distance from the outter border to the center of the wheel-->
-  <xacro:property name="caster_x_offset" value="0.035"/>
+  <xacro:property name="f_wheel_x_offset" value="0.035"/>
   <!-- Offset distance from the outter border to the face of the wheel -->
-  <xacro:property name="caster_y_offset" value="0.050"/>
+  <xacro:property name="f_wheel_y_offset" value="0.050"/>
   <!-- Offset distance from the bottom border to the center of the wheel -->
-  <xacro:property name="caster_z_offset" value="0.008"/>
+  <xacro:property name="f_wheel_z_offset" value="0.008"/>
 
-  <!-- Main Wheel joint position -->
-  <xacro:property name="caster_pos_x_joint" value="${(base_props['base']['length']/2) - caster_x_offset}"/>
-  <xacro:property name="caster_pos_y_joint"
-    value="${(base_props['base']['width']/2) - caster_y_offset - (front_wheel_props['wheel']['length']/2)}"/>
-  <xacro:property name="caster_pos_z_joint" value="${caster_z_offset}"/>
+  <!-- Front Wheel joint position -->
+  <xacro:property name="f_wheel_pos_x_joint" value="${(base_props['base']['length']/2) - f_wheel_x_offset}"/>
+  <xacro:property name="f_wheel_pos_y_joint"
+    value="${(base_props['base']['width']/2) - f_wheel_y_offset - (front_wheel_props['wheel']['length']/2)}"/>
+  <xacro:property name="f_wheel_pos_z_joint" value="${f_wheel_z_offset}"/>
   <!-- ######################################## -->
  
   <!-- Base link -->
@@ -57,36 +57,36 @@
 
   <xacro:test x="2"/> -->
 
-  <!-- Main Wheel -->
-  <xacro:wheel prefix="right" reflect="-1"
+  <!-- Back Wheel -->
+  <xacro:wheel prefix="back_right" reflect="-1"
                       wheel_prop="${wheel_props}"
-                      pos_x_joint="${pos_x_joint}"
-                      pos_y_joint="${pos_y_joint}"
-                      pos_z_joint="${pos_z_joint}"
+                      pos_x_joint="${b_wheel_pos_x_joint}"
+                      pos_y_joint="${b_wheel_pos_y_joint}"
+                      pos_z_joint="${b_wheel_pos_z_joint}"
                       mesh="${wheel_props['wheel']['mesh']}">
   </xacro:wheel>
 
-  <xacro:wheel prefix="left" reflect="1"
+  <xacro:wheel prefix="back_left" reflect="1"
                       wheel_prop="${wheel_props}"
-                      pos_x_joint="${pos_x_joint}"
-                      pos_y_joint="${pos_y_joint}"
-                      pos_z_joint="${pos_z_joint}"
+                      pos_x_joint="${b_wheel_pos_x_joint}"
+                      pos_y_joint="${b_wheel_pos_y_joint}"
+                      pos_z_joint="${b_wheel_pos_z_joint}"
                       mesh="${wheel_props['wheel']['mesh']}">
   </xacro:wheel>
 
-  <!-- Auxiliar Wheel -->
-  <xacro:wheel prefix="caster_right" reflect="-1" 
+  <!-- Front Wheel -->
+  <xacro:wheel prefix="front_right" reflect="-1" 
                       wheel_prop="${front_wheel_props}" 
-                      pos_x_joint="${caster_pos_x_joint}" 
-                      pos_y_joint="${caster_pos_y_joint}" 
-                      pos_z_joint="${caster_pos_z_joint}">
+                      pos_x_joint="${f_wheel_pos_x_joint}" 
+                      pos_y_joint="${f_wheel_pos_y_joint}" 
+                      pos_z_joint="${f_wheel_pos_z_joint}">
   </xacro:wheel>
 
-  <xacro:wheel prefix="caster_left" reflect="1" 
+  <xacro:wheel prefix="front_left" reflect="1" 
                       wheel_prop="${front_wheel_props}" 
-                      pos_x_joint="${caster_pos_x_joint}" 
-                      pos_y_joint="${caster_pos_y_joint}" 
-                      pos_z_joint="${caster_pos_z_joint}"> 
+                      pos_x_joint="${f_wheel_pos_x_joint}" 
+                      pos_y_joint="${f_wheel_pos_y_joint}" 
+                      pos_z_joint="${f_wheel_pos_z_joint}"> 
   </xacro:wheel>                      
 
   <!-- <xacro:include filename="$(find mobile_description)/urdf/mobile_robot_gazebo_plugins.xacro"/>  -->
