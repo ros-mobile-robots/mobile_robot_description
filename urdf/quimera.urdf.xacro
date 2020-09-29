@@ -24,9 +24,9 @@
 
   <!-- Back Wheel joint position -->
   <xacro:property name="b_wheel_pos_x_joint"
-     value="${(base_props['base']['length']/2) - b_wheel_x_offset}"/>
+     value="${(base_props['base']['x_size']/2) - b_wheel_x_offset}"/>
   <xacro:property name="b_wheel_pos_y_joint"
-    value="${(base_props['base']['width']/2) - b_wheel_y_offset - (wheel_props['wheel']['length']/2)}"/>
+    value="${(base_props['base']['y_size']/2) - b_wheel_y_offset - (wheel_props['wheel']['length']/2)}"/>
   <xacro:property name="b_wheel_pos_z_joint" value="${b_wheel_z_offset}"/>
   <!-- ######################################## -->
 
@@ -39,24 +39,30 @@
   <xacro:property name="f_wheel_z_offset" value="0.008"/>
 
   <!-- Front Wheel joint position -->
-  <xacro:property name="f_wheel_pos_x_joint" value="${(base_props['base']['length']/2) - f_wheel_x_offset}"/>
+  <xacro:property name="f_wheel_pos_x_joint" value="${(base_props['base']['x_size']/2) - f_wheel_x_offset}"/>
   <xacro:property name="f_wheel_pos_y_joint"
-    value="${(base_props['base']['width']/2) - f_wheel_y_offset - (front_wheel_props['wheel']['length']/2)}"/>
+    value="${(base_props['base']['y_size']/2) - f_wheel_y_offset - (front_wheel_props['wheel']['length']/2)}"/>
   <xacro:property name="f_wheel_pos_z_joint" value="${f_wheel_z_offset}"/>
   <!-- ######################################## -->
- 
+
+  <!-- <xacro:macro name="get_parameters" params="yaml_name prefix">
+    <xacro:property name="yaml" value="$(find quimera_robot_description)/config/${yaml_name}.yaml" />
+    <xacro:property name="${prefix}_props" value="${load_yaml(yaml)}" scope="global"/>
+  </xacro:macro> -->
+
+  <!-- <xacro:get_parameters yaml_name="back_wheel" prefix="front"/> -->
+  <!-- <xacro:property name="test_props" value="${props}"/> -->
+
+  <!-- <xacro:get_parameters yaml_name="front_wheel"/>
+  <xacro:property name="front_props" value="${props}"/> -->
+
   <!-- Base link -->
   <xacro:base base_prop="${base_props}" mesh="${base_props['base']['mesh']}" >
     <origin xyz="0 0 0" rpy="${PI/2} 0 -${PI/2}" />
   </xacro:base> 
 
-<!--   
-  <xacro:macro name="test" params="x">
-    <xacro:property name="posi_x" value="0.008 | ${x}"/>
-  </xacro:macro>
 
-  <xacro:test x="2"/> -->
-
+  
   <!-- Back Wheel -->
   <xacro:wheel prefix="back_right" reflect="-1"
                       wheel_prop="${wheel_props}"

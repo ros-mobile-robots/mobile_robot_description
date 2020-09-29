@@ -50,9 +50,9 @@
                params="base_prop mesh:='' *origin">
     <link name="base_link">
     <xacro:box_inertia m="${base_prop['base']['mass']}" 
-                       x="${base_prop['base']['length']}" 
-                       y="${base_prop['base']['width']}"
-                       z="${base_prop['base']['height']}"> 
+                       x="${base_prop['base']['x_size']}" 
+                       y="${base_prop['base']['y_size']}"
+                       z="${base_prop['base']['z_size']}"> 
     </xacro:box_inertia>
     <xacro:if value="${mesh != '' }" >
       <visual>
@@ -67,14 +67,14 @@
       <visual>
         <xacro:insert_block name="origin" />
         <geometry>
-          <box size="${base_prop['base']['length']} ${base_prop['base']['width']} ${base_prop['base']['height']}"/>
+          <box size="${base_prop['base']['x_size']} ${base_prop['base']['y_size']} ${base_prop['base']['z_size']}"/>
         </geometry>
         <material name="white" />
       </visual>
     </xacro:if>  
     <collision>
       <geometry>
-        <box size="${base_prop['base']['length']} ${base_prop['base']['width']} ${base_prop['base']['height']}"/>
+        <box size="${base_prop['base']['x_size']} ${base_prop['base']['y_size']} ${base_prop['base']['z_size']}"/>
       </geometry>
     </collision>
     </link>
