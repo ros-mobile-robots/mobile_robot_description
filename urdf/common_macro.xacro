@@ -11,7 +11,7 @@
       <visual>
         <origin xyz="0.0 0 0" rpy="${pi/2} 0 0"/>
          <geometry>
-        <mesh filename="package://quimera_robot_description/meshes/${mesh}.dae" />
+        <mesh filename="package://mobile_robot_description/meshes/${mesh}.dae" />
         </geometry>
       </visual>
     </xacro:if>
@@ -58,7 +58,7 @@
       <visual>
         <xacro:insert_block name="origin" />
         <geometry>
-          <mesh filename="package://quimera_robot_description/meshes/${mesh}.dae" />
+          <mesh filename="package://mobile_robot_description/meshes/${mesh}.dae" />
         </geometry>
         <material name="white" />
       </visual>

@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>quimera_robot_description</name>
+  <name>mobile_robot_description</name>
   <version>0.0.0</version>
-  <description>The quimera_robot_description package</description>
+  <description>The mobile_robot_description package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->
