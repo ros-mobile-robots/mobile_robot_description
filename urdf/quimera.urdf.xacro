@@ -17,8 +17,10 @@
   <!-- ####### Back Wheel Parameters ########## -->
   <!-- Offset distance from the outter border to the center of the wheel-->
   <xacro:property name="b_wheel_x_offset" value="0.128"/>
-  <!-- Offset distance from the outter border to the face of the wheel -->
-  <xacro:property name="b_wheel_y_offset" value="0.02"/>
+  <!-- Offset distance from the outer face of the base to the inner face of the wheel. 
+   The outer face of the base is the reference so, if the wheels are inside the base the value must be
+   negative. If the wheels are outside, must be positive -->
+  <xacro:property name="b_wheel_y_offset" value="-0.052"/>
   <!-- Offset distance from the bottom border to the center of the wheel -->
   <xacro:property name="b_wheel_z_offset" value="0.05"/>
 
@@ -26,22 +28,22 @@
   <xacro:property name="b_wheel_pos_x_joint"
      value="${(base_props['base']['x_size']/2) - b_wheel_x_offset}"/>
   <xacro:property name="b_wheel_pos_y_joint"
-    value="${(base_props['base']['y_size']/2) - b_wheel_y_offset - (wheel_props['wheel']['length']/2)}"/>
+    value="${(base_props['base']['y_size']/2) + b_wheel_y_offset + (wheel_props['wheel']['length']/2)}"/>
   <xacro:property name="b_wheel_pos_z_joint" value="${b_wheel_z_offset}"/>
   <!-- ######################################## -->
 
   <!-- ####### Front Wheel Parameters ########## -->
   <!-- Offset distance from the outter border to the center of the wheel-->
   <xacro:property name="f_wheel_x_offset" value="0.035"/>
-  <!-- Offset distance from the outter border to the face of the wheel -->
-  <xacro:property name="f_wheel_y_offset" value="0.050"/>
+  <!-- Offset distance from the outter border of the base to the inner face of the wheel -->
+  <xacro:property name="f_wheel_y_offset" value="-0.056"/>
   <!-- Offset distance from the bottom border to the center of the wheel -->
   <xacro:property name="f_wheel_z_offset" value="0.008"/>
 
   <!-- Front Wheel joint position -->
   <xacro:property name="f_wheel_pos_x_joint" value="${(base_props['base']['x_size']/2) - f_wheel_x_offset}"/>
   <xacro:property name="f_wheel_pos_y_joint"
-    value="${(base_props['base']['y_size']/2) - f_wheel_y_offset - (front_wheel_props['wheel']['length']/2)}"/>
+    value="${(base_props['base']['y_size']/2) + f_wheel_y_offset + (front_wheel_props['wheel']['length']/2)}"/>
   <xacro:property name="f_wheel_pos_z_joint" value="${f_wheel_z_offset}"/>
   <!-- ######################################## -->
 
