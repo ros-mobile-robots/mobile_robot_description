@@ -38,17 +38,12 @@
   <!-- <xacro:get_parameters yaml_name="back_wheel" prefix="front"/> -->
   <!-- <xacro:property name="test_props" value="${props}"/> -->
 
-  <!-- <xacro:get_parameters yaml_name="front_wheel"/>
-  <xacro:property name="front_props" value="${props}"/> -->
-
   <!-- Base link -->
   <xacro:base base_prop="${base_props}" mesh="${base_props['base']['mesh']}" >
     <origin xyz="0 0 0" rpy="${PI/2} 0 -${PI/2}" />
   </xacro:base> 
 
-
-  
-  <!-- Back Wheel -->
+  <!-- Back Wheels -->
   <xacro:wheel prefix="back_right" reflect="-1"
                       wheel_prop="${wheel_props}"
                       pos_x_joint="${b_wheel_pos_x_joint}"
@@ -65,7 +60,7 @@
                       mesh="${wheel_props['wheel']['mesh']}">
   </xacro:wheel>
 
-  <!-- Front Wheel -->
+  <!-- Front Wheels -->
   <xacro:wheel prefix="front_right" reflect="-1" 
                       wheel_prop="${front_wheel_props}" 
                       pos_x_joint="${f_wheel_pos_x_joint}" 
