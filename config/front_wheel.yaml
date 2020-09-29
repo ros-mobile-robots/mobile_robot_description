@@ -3,3 +3,6 @@ wheel:
   radius: 0.011     # Wheel radius in m
   length: 0.006     # Wheel length in m, considering is as a cylinder
   mesh: ''          # Name of the mesh files. Leave it empty ('') to have a red wheel
+  x_offset: 0.035
+  y_offset: -0.056
+  z_offset: 0.008
