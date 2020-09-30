@@ -14,22 +14,6 @@
 
   <xacro:property name="PI" value="3.14"/>
   
-  <!-- Back Wheel joint position -->
-  <xacro:property name="b_wheel_pos_x_joint"
-     value="${(base_props['base']['x_size']/2) - wheel_props['wheel']['x_offset']}"/>
-  <xacro:property name="b_wheel_pos_y_joint"
-    value="${(base_props['base']['y_size']/2) + wheel_props['wheel']['y_offset'] + (wheel_props['wheel']['length']/2)}"/>
-  <xacro:property name="b_wheel_pos_z_joint" value="${wheel_props['wheel']['z_offset']}"/>
-  <!-- ######################################## -->
-
-  <!-- Front Wheel joint position -->
-  <xacro:property name="f_wheel_pos_x_joint"
-    value="${(base_props['base']['x_size']/2) - front_wheel_props['wheel']['x_offset']}"/>
-  <xacro:property name="f_wheel_pos_y_joint"
-    value="${(base_props['base']['y_size']/2) + front_wheel_props['wheel']['y_offset'] + (front_wheel_props['wheel']['length']/2)}"/>
-  <xacro:property name="f_wheel_pos_z_joint" value="${front_wheel_props['wheel']['z_offset']}"/>
-  <!-- ######################################## -->
-
   <!-- <xacro:macro name="get_parameters" params="yaml_name prefix">
     <xacro:property name="yaml" value="$(find quimera_robot_description)/config/${yaml_name}.yaml" />
     <xacro:property name="${prefix}_props" value="${load_yaml(yaml)}" scope="global"/>
@@ -45,34 +29,26 @@
 
   <!-- Back Wheels -->
   <xacro:wheel prefix="back_right" reflect="-1"
-                      wheel_prop="${wheel_props}"
-                      pos_x_joint="${b_wheel_pos_x_joint}"
-                      pos_y_joint="${b_wheel_pos_y_joint}"
-                      pos_z_joint="${b_wheel_pos_z_joint}"
+                      wheel_props="${wheel_props}"
+                      base_props="${base_props}"                    
                       mesh="${wheel_props['wheel']['mesh']}">
   </xacro:wheel>
 
   <xacro:wheel prefix="back_left" reflect="1"
-                      wheel_prop="${wheel_props}"
-                      pos_x_joint="${b_wheel_pos_x_joint}"
-                      pos_y_joint="${b_wheel_pos_y_joint}"
-                      pos_z_joint="${b_wheel_pos_z_joint}"
+                      wheel_props="${wheel_props}"
+                      base_props="${base_props}"
                       mesh="${wheel_props['wheel']['mesh']}">
   </xacro:wheel>
 
   <!-- Front Wheels -->
   <xacro:wheel prefix="front_right" reflect="-1" 
-                      wheel_prop="${front_wheel_props}" 
-                      pos_x_joint="${f_wheel_pos_x_joint}" 
-                      pos_y_joint="${f_wheel_pos_y_joint}" 
-                      pos_z_joint="${f_wheel_pos_z_joint}">
+                      wheel_props="${front_wheel_props}"
+                      base_props="${base_props}"> 
   </xacro:wheel>
 
   <xacro:wheel prefix="front_left" reflect="1" 
-                      wheel_prop="${front_wheel_props}" 
-                      pos_x_joint="${f_wheel_pos_x_joint}" 
-                      pos_y_joint="${f_wheel_pos_y_joint}" 
-                      pos_z_joint="${f_wheel_pos_z_joint}"> 
+                      wheel_props="${front_wheel_props}"
+                      base_props="${base_props}"> 
   </xacro:wheel>                      
 
   <!-- <xacro:include filename="$(find mobile_description)/urdf/mobile_robot_gazebo_plugins.xacro"/>  -->

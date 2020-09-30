@@ -1,11 +1,16 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-<!--Wheel link1 & joint macro-->
+<!--Wheel link & joint macro-->
   <xacro:macro name="wheel"
-               params="prefix reflect wheel_prop
-                       pos_x_joint pos_y_joint pos_z_joint mesh:=''">
-    <xacro:property name="radius" value="${wheel_props['wheel']['radius']}"/>
+               params="prefix reflect wheel_props base_props mesh:=''">
+
+  <xacro:property name="pos_x_joint"
+     value="${(base_props['base']['x_size']/2) - wheel_props['wheel']['x_offset']}"/>
+  <xacro:property name="pos_y_joint"
+    value="${(base_props['base']['y_size']/2) + wheel_props['wheel']['y_offset'] + (wheel_props['wheel']['length']/2)}"/>
+  <xacro:property name="pos_z_joint" value="${wheel_props['wheel']['z_offset']}"/>
+
     <link name="${prefix}_wheel">
     <xacro:if value="${mesh != '' }" >
       <visual>
@@ -19,7 +24,7 @@
       <visual>
         <origin xyz="0.0 0 0" rpy="${pi/2} 0 0"/>
          <geometry>
-         <cylinder radius="${wheel_prop['wheel']['radius']}" length="${wheel_prop['wheel']['length']}"/>
+         <cylinder radius="${wheel_props['wheel']['radius']}" length="${wheel_props['wheel']['length']}"/>
         </geometry>
         <material name="red"/>
       </visual>
@@ -27,12 +32,12 @@
       <collision>
         <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
         <geometry>
-          <cylinder radius="${wheel_prop['wheel']['radius']}" length="${wheel_prop['wheel']['length']}"/>
+          <cylinder radius="${wheel_props['wheel']['radius']}" length="${wheel_props['wheel']['length']}"/>
         </geometry>
       </collision>
-      <xacro:cylinder_inertia m="${wheel_prop['wheel']['mass']}" 
-                              r="${wheel_prop['wheel']['radius']}" 
-                              l="${wheel_prop['wheel']['length']}">
+      <xacro:cylinder_inertia m="${wheel_props['wheel']['mass']}" 
+                              r="${wheel_props['wheel']['radius']}" 
+                              l="${wheel_props['wheel']['length']}">
       </xacro:cylinder_inertia> 
     </link>
     
