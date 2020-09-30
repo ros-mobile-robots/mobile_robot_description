@@ -3,7 +3,7 @@
 
 <!--Wheel link & joint macro-->
   <xacro:macro name="wheel"
-               params="prefix reflect wheel_props base_props mesh:=''">
+               params="prefix reflect wheel_props base_props mesh:='' ">
 
   <xacro:property name="pos_x_joint"
      value="${(base_props['base']['x_size']/2) - wheel_props['wheel']['x_offset']}"/>
@@ -122,7 +122,7 @@
 
 <!--Base macro-->
   <xacro:macro name="base"
-               params="base_prop mesh:='' *origin">
+               params="base_prop mesh:='' *origin name ">
     <link name="base_link">
     <xacro:box_inertia m="${base_prop['base']['mass']}" 
                        x="${base_prop['base']['x_size']}" 
@@ -133,7 +133,7 @@
       <visual>
         <xacro:insert_block name="origin" />
         <geometry>
-          <mesh filename="package://mobile_robot_description/meshes/${mesh}.dae" />
+          <mesh filename="package://${name}/meshes/${mesh}.dae" />
         </geometry>
         <material name="white" />
       </visual>

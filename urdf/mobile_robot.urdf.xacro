@@ -1,7 +1,9 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="mobile_robot">
 
-  <xacro:include filename="$(find mobile_robot_description)/urdf/include/common_macros.urdf.xacro" />
+  <xacro:property name="folder_name" value="mobile_robot_description"/>  
+
+  <xacro:include filename="$(find ${folder_name})/urdf/include/common_macros.urdf.xacro" />
 
   <xacro:property name="back_wheel_yaml" value="$(find mobile_robot_description)/config/back_wheel.yaml" />
   <xacro:property name="wheel_props" value="${load_yaml(back_wheel_yaml)}"/>
@@ -13,7 +15,7 @@
   <xacro:property name="base_props" value="${load_yaml(base_yaml)}"/>
 
   <!-- Base link -->
-  <xacro:base base_prop="${base_props}" mesh="${base_props['base']['mesh']}" >
+  <xacro:base base_prop="${base_props}" mesh="${base_props['base']['mesh']}" name="mobile_robot_description" >
     <origin xyz="0 0 0" rpy="${pi/2} 0 -${pi/2}" />
   </xacro:base> 
   <!-- Back Wheels -->
