@@ -12,21 +12,10 @@
   <xacro:property name="base_yaml" value="$(find mobile_robot_description)/config/base.yaml" />
   <xacro:property name="base_props" value="${load_yaml(base_yaml)}"/>
 
-  <xacro:property name="PI" value="3.14"/>
-  
-  <!-- <xacro:macro name="get_parameters" params="yaml_name prefix">
-    <xacro:property name="yaml" value="$(find quimera_robot_description)/config/${yaml_name}.yaml" />
-    <xacro:property name="${prefix}_props" value="${load_yaml(yaml)}" scope="global"/>
-  </xacro:macro> -->
-
-  <!-- <xacro:get_parameters yaml_name="back_wheel" prefix="front"/> -->
-  <!-- <xacro:property name="test_props" value="${props}"/> -->
-
   <!-- Base link -->
   <xacro:base base_prop="${base_props}" mesh="${base_props['base']['mesh']}" >
-    <origin xyz="0 0 0" rpy="${PI/2} 0 -${PI/2}" />
+    <origin xyz="0 0 0" rpy="${pi/2} 0 -${pi/2}" />
   </xacro:base> 
-
   <!-- Back Wheels -->
   <xacro:wheel prefix="back_right" reflect="-1"
                       wheel_props="${wheel_props}"
@@ -49,7 +38,8 @@
   <xacro:wheel prefix="front_left" reflect="1" 
                       wheel_props="${front_wheel_props}"
                       base_props="${base_props}"> 
-  </xacro:wheel>                      
+  </xacro:wheel>
+       
 
   <!-- <xacro:include filename="$(find mobile_description)/urdf/mobile_robot_gazebo_plugins.xacro"/>  -->
 
