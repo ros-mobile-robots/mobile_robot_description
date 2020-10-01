@@ -1,21 +1,23 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="mobile_robot">
 
-  <xacro:property name="folder_name" value="mobile_robot_description"/>  
+  <xacro:property name="package_name" value="mobile_robot_description"/>  
 
-  <xacro:include filename="$(find ${folder_name})/urdf/include/common_macros.urdf.xacro" />
+  <xacro:include filename="$(find ${package_name})/urdf/include/common_macros.urdf.xacro" />
+  
+  <!-- <xacro:set_package_name /> -->
 
-  <xacro:property name="back_wheel_yaml" value="$(find mobile_robot_description)/config/back_wheel.yaml" />
+  <xacro:property name="back_wheel_yaml" value="$(find ${package_name})/config/back_wheel.yaml" />
   <xacro:property name="wheel_props" value="${load_yaml(back_wheel_yaml)}"/>
 
-  <xacro:property name="front_wheel_yaml" value="$(find mobile_robot_description)/config/front_wheel.yaml" />
+  <xacro:property name="front_wheel_yaml" value="$(find ${package_name})/config/front_wheel.yaml" />
   <xacro:property name="front_wheel_props" value="${load_yaml(front_wheel_yaml)}"/>
 
-  <xacro:property name="base_yaml" value="$(find mobile_robot_description)/config/base.yaml" />
+  <xacro:property name="base_yaml" value="$(find ${package_name})/config/base.yaml" />
   <xacro:property name="base_props" value="${load_yaml(base_yaml)}"/>
 
   <!-- Base link -->
-  <xacro:base base_prop="${base_props}" mesh="${base_props['base']['mesh']}" name="mobile_robot_description" >
+  <xacro:base base_prop="${base_props}" mesh="${base_props['base']['mesh']}" >
     <origin xyz="0 0 0" rpy="${pi/2} 0 -${pi/2}" />
   </xacro:base> 
   <!-- Back Wheels -->

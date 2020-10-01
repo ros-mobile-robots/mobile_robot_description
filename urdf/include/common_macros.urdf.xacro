@@ -1,6 +1,11 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
+
+<xacro:macro name="set_environment" params="package_name:='mobile_robot_description' ">
+  <xacro:property name="package_name" value="${package_name}" scope="global"/>  
+</xacro:macro>
+
 <!--Wheel link & joint macro-->
   <xacro:macro name="wheel"
                params="prefix reflect wheel_props base_props mesh:='' ">
@@ -16,7 +21,7 @@
       <visual>
         <origin xyz="0.0 0 0" rpy="${pi/2} 0 0"/>
          <geometry>
-        <mesh filename="package://mobile_robot_description/meshes/${mesh}.dae" />
+        <mesh filename="package://${package_name}/meshes/${mesh}.dae" />
         </geometry>
       </visual>
     </xacro:if>
@@ -122,7 +127,7 @@
 
 <!--Base macro-->
   <xacro:macro name="base"
-               params="base_prop mesh:='' *origin name ">
+               params="base_prop mesh:='' *origin ">
     <link name="base_link">
     <xacro:box_inertia m="${base_prop['base']['mass']}" 
                        x="${base_prop['base']['x_size']}" 
@@ -133,7 +138,8 @@
       <visual>
         <xacro:insert_block name="origin" />
         <geometry>
-          <mesh filename="package://${name}/meshes/${mesh}.dae" />
+          <!-- The folder path get a folder_name global parameter -->
+          <mesh filename="package://${package_name}/meshes/${mesh}.dae" />
         </geometry>
         <material name="white" />
       </visual>
