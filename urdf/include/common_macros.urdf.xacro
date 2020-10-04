@@ -21,7 +21,7 @@
       <visual>
         <origin xyz="0.0 0 0" rpy="${pi/2} 0 ${pi/2.0*(reflect - 1)}"/>
          <geometry>
-        <mesh filename="package://${package_name}/meshes/${mesh}.dae" />
+        <mesh filename="package://${package_name}/meshes/${mesh}" />
         </geometry>
       </visual>
     </xacro:if>
@@ -139,7 +139,7 @@
         <xacro:insert_block name="origin" />
         <geometry>
           <!-- The folder path get a folder_name global parameter -->
-          <mesh filename="package://${package_name}/meshes/${mesh}.dae" />
+          <mesh filename="package://${package_name}/meshes/${mesh}" />
         </geometry>
         <material name="white" />
       </visual>
