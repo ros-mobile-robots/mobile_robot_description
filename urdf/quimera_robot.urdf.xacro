@@ -9,7 +9,7 @@
   <!-- <xacro:set_package_name /> -->
 
   <xacro:property name="back_wheel_yaml" value="$(find ${package_name})/config/${robot_name}/back_wheel.yaml" />
-  <xacro:property name="wheel_props" value="${load_yaml(back_wheel_yaml)}"/>
+  <xacro:property name="back_wheel_props" value="${load_yaml(back_wheel_yaml)}"/>
 
   <xacro:property name="front_wheel_yaml" value="$(find ${package_name})/config/${robot_name}/front_wheel.yaml" />
   <xacro:property name="front_wheel_props" value="${load_yaml(front_wheel_yaml)}"/>
@@ -23,15 +23,15 @@
   </xacro:base> 
   <!-- Back Wheels -->
   <xacro:wheel prefix="back_right" reflect="-1"
-                      wheel_props="${wheel_props}"
+                      wheel_props="${back_wheel_props}"
                       base_props="${base_props}"                    
-                      mesh="${wheel_props['wheel']['mesh']}">
+                      mesh="${back_wheel_props['wheel']['mesh']}">
   </xacro:wheel>
 
   <xacro:wheel prefix="back_left" reflect="1"
-                      wheel_props="${wheel_props}"
+                      wheel_props="${back_wheel_props}"
                       base_props="${base_props}"
-                      mesh="${wheel_props['wheel']['mesh']}">
+                      mesh="${back_wheel_props['wheel']['mesh']}">
   </xacro:wheel>
 
   <!-- Front Wheels -->
