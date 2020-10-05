@@ -2,7 +2,7 @@ wheel:
   mass: 0.01        # Wheel mass in Kg
   radius: 0.011     # Wheel radius in m
   length: 0.006     # Wheel length in m, considering is as a cylinder
-  mesh: 'diffbot/wheel.stl'          # Name of the mesh files. Leave it empty ('') to have a red wheel
+  mesh: 'wheel.dae'          # Name of the mesh files. Leave it empty ('') to have a red wheel
   x_offset: 0.035
   y_offset: -0.056
   z_offset: 0.008

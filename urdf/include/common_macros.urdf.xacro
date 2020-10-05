@@ -21,7 +21,7 @@
       <visual>
         <origin xyz="0.0 0 0" rpy="${pi/2} 0 ${pi/2.0*(reflect - 1)}"/>
          <geometry>
-        <mesh filename="package://${package_name}/meshes/${mesh}" />
+        <mesh filename="package://${package_name}/meshes/${robot_name}/${mesh}" />
         </geometry>
       </visual>
     </xacro:if>
@@ -73,7 +73,7 @@
         <visual>
             <origin xyz="0 0 ${-wheel_props['base']['size']['z']/2.0}" rpy="0 0 0" />
             <geometry>
-                <mesh filename="package://${package_name}/meshes/${wheel_props['base']['mesh']}" />
+                <mesh filename="package://${package_name}/meshes/${robot_name}/${wheel_props['base']['mesh']}" />
             </geometry>
             <!-- xacro:insert_block name="material_silver" / TODO use this block? -->
             <material name="silver"/>
@@ -122,7 +122,7 @@
         <visual>
           <origin xyz="0 0 ${-wheel_props['hub']['size']['z']/2.0}" rpy="0 0 0" />
           <geometry>
-            <mesh filename="package://${package_name}/meshes/${wheel_props['hub']['mesh']}" />
+            <mesh filename="package://${package_name}/meshes/${robot_name}/${wheel_props['hub']['mesh']}" />
           </geometry>
           <!-- xacro:insert_block name="material_silver" / TODO use this block? -->
           <material name="silver"/>
@@ -168,7 +168,7 @@
         <visual>
           <origin xyz="0 0 0" rpy="0 0 0" />
           <geometry>
-            <mesh filename="package://${package_name}/meshes/${wheel_props['wheel']['mesh']}" />
+            <mesh filename="package://${package_name}/meshes/${robot_name}/${wheel_props['wheel']['mesh']}" />
           </geometry>
           <!-- TODO use this?: xacro:insert_block name="material_dark_grey" /-->
           <material name="material_dark_grey"/>
@@ -217,7 +217,7 @@
         <xacro:insert_block name="origin" />
         <geometry>
           <!-- The folder path get a folder_name global parameter -->
-          <mesh filename="package://${package_name}/meshes/${mesh}" />
+          <mesh filename="package://${package_name}/meshes/${robot_name}/${mesh}" />
         </geometry>
         <material name="white" />
       </visual>
