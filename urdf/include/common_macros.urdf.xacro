@@ -21,7 +21,7 @@
       <visual>
         <origin xyz="0.0 0 0" rpy="${pi/2} 0 ${pi/2.0*(reflect - 1)}"/>
          <geometry>
-        <mesh filename="package://${package_name}/meshes/${mesh}" />
+        <mesh filename="package://${package_name}/meshes/${robot_name}/${mesh}" />
         </geometry>
       </visual>
     </xacro:if>
@@ -56,71 +56,149 @@
   </xacro:macro>
 
 <!-- Caster wheel link & joint macro -->
-  <xacro:macro name="caster_wheel" params="locationprefix locationright wheel_base_dx
-    flipY:=${1}">
-    <!-- caster hub -->
-    <joint name="${locationprefix}_caster_rotation_joint" type="continuous">
-      <origin xyz="${wheel_base_dx} ${-caster_wheel_base_dy * locationright} ${caster_wheel_base_dz}" rpy="0 0 0" />
+  <!-- locationprefix locationright wheel_base_dx TODO remove -->
+  <xacro:macro name="caster_wheel" 
+                params="prefix reflect wheel_props locationright:=${0} ">
+    <!-- caster base (fixed) -->
+    <link name="${prefix}_caster_base_link">
+      <inertial>
+        <origin xyz="0 0 ${-wheel_props['base']['size']['z']/2.0}" rpy="0 0 0" />
+        <mass value="${wheel_props['base']['mass']}" />
+        <xacro:box_inertia  m="${wheel_props['base']['mass']}" 
+                            x="${wheel_props['base']['size']['x']}" 
+                            y="${wheel_props['base']['size']['y']}" 
+                            z="${wheel_props['base']['size']['z']}" />
+      </inertial>
+      <xacro:if value="${wheel_props['base']['mass'] != '' }" >
+        <visual>
+            <origin xyz="0 0 ${-wheel_props['base']['size']['z']/2.0}" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://${package_name}/meshes/${robot_name}/${wheel_props['base']['mesh']}" />
+            </geometry>
+            <!-- xacro:insert_block name="material_silver" / TODO use this block? -->
+            <material name="silver"/>
+        </visual>
+      </xacro:if>
+      <xacro:if value="${wheel_props['base']['mass'] == '' }" >
+        <visual>
+          <origin xyz="0 0 ${-wheel_props['base']['size']['z']/2.0}" rpy="0 0 0" />
+          <geometry>
+            <box size="${wheel_props['base']['size']['x']} ${wheel_props['base']['size']['y']} ${wheel_props['base']['size']['z']}" />
+          </geometry>
+          <material name="red"/>
+        </visual>
+      </xacro:if>
+      <collision>
+        <origin xyz="0 0 ${-wheel_props['base']['size']['z']/2.0}" rpy="0 0 0" />
+        <geometry>
+          <box size="${wheel_props['base']['size']['x']} ${wheel_props['base']['size']['y']} ${wheel_props['base']['size']['z']}" />
+        </geometry>
+      </collision>
+    </link>
+    <joint name="${prefix}_caster_base_joint" type="fixed">
+      <origin xyz="${wheel_props['base']['dx']} ${-wheel_props['base']['dy'] * locationright} ${wheel_props['base']['dz']}" 
+              rpy="0 0 0" />
       <parent link="base_link" />
-      <child link="${locationprefix}_caster_rotation_link" />
+      <child link="${prefix}_caster_base_link" />
       <axis xyz="0 0 1" />
       <dynamics damping="0.01" friction="0.0"/>
     </joint>
-    <link name="${locationprefix}_caster_rotation_link">
-      <inertial>
-        <origin xyz="0 0 ${-caster_base_size/2.0}" rpy="0 0 0" />
-        <mass value="${caster_base_mass}" />
-        <xacro:box_inertia  m="${caster_base_mass}" l="${caster_base_size}" w="${caster_base_size}" h="${caster_base_size}" />
-      </inertial>
-      <visual>
-        <origin xyz="0 0 ${-caster_base_size/2.0}" rpy="0 0 0" />
-        <geometry>
-          <!--mesh filename="package://mobile_robot_description/meshes/visual/caster_wheel_base.stl" /-->
-          <box size="${caster_base_size} ${caster_base_size} ${caster_base_size}" />
-        </geometry>
-        <xacro:insert_block name="material_silver" />
-      </visual>
-      <collision>
-        <origin xyz="0 0 ${-caster_base_size/2.0}" rpy="0 0 0" />
-        <geometry>
-          <!--mesh filename="package://mobile_robot_description/meshes/collision/caster_wheel_base.stl" /-->
-          <box size="${caster_base_size} ${caster_base_size} ${caster_base_size}" />
-        </geometry>
-      </collision>
-    </link>
-    <gazebo reference="${locationprefix}_caster_rotation_link">
+    <gazebo reference="${prefix}_caster_base_link">
       <material>Gazebo/Grey</material>
     </gazebo>
-    <!-- caster wheel -->
-    <joint name="${locationprefix}_caster_wheel_joint" type="continuous">
-      <origin xyz="${caster_wheel_dx} ${-caster_wheel_dy * locationright} ${caster_wheel_dz}" rpy="0 0 0" />
-      <parent link="${locationprefix}_caster_rotation_link" />
-      <child link="${locationprefix}_caster_wheel_link" />
-      <axis xyz="0 1 0" />
-    </joint>
 
-    <link name="${locationprefix}_caster_wheel_link">
-      <xacro:cylinder_inertial mass="${caster_wheel_mass}" radius="${caster_wheel_radius}" length="${caster_wheel_width}">
-        <origin xyz="0 0 0" rpy="${pi/2} 0 0" />
-      </xacro:cylinder_inertial>
-      <visual>
-        <origin xyz="0 0 0" rpy="${flipY*pi/2} 0 0" />
-        <geometry>
-          <!--mesh filename="package://mobile_robot_description/meshes/visual/wheel.stl" -->
-          <cylinder length="${caster_wheel_width}" radius="${caster_wheel_radius}" />
-        </geometry>
-        <xacro:insert_block name="material_dark_grey" />
-      </visual>
+
+    <!-- caster hub -->
+    <link name="${prefix}_caster_rotation_link">
+      <inertial>
+        <origin xyz="0 0 ${-wheel_props['hub']['size']['z']/2.0}" rpy="0 0 0" />
+        <mass value="${wheel_props['hub']['mass']}" />
+        <xacro:box_inertia  m="${wheel_props['hub']['mass']}" 
+                            x="${wheel_props['hub']['size']['x']}" 
+                            y="${wheel_props['hub']['size']['y']}" 
+                            z="${wheel_props['hub']['size']['z']}" />
+      </inertial>
+      <xacro:if value="${wheel_props['hub']['mesh'] != '' }" >
+        <visual>
+          <origin xyz="0 0 ${-wheel_props['hub']['size']['z']/2.0}" rpy="0 0 0" />
+          <geometry>
+            <mesh filename="package://${package_name}/meshes/${robot_name}/${wheel_props['hub']['mesh']}" />
+          </geometry>
+          <!-- xacro:insert_block name="material_silver" / TODO use this block? -->
+          <material name="silver"/>
+        </visual>
+      </xacro:if>
+      <xacro:if value="${wheel_props['hub']['mesh'] == '' }" >
+        <visual>
+          <origin xyz="0 0 ${-wheel_props['hub']['size']['z']/2.0}" rpy="0 0 0" />
+          <geometry>
+            <box size="${wheel_props['hub']['size']['x']} ${wheel_props['hub']['size']['y']} ${wheel_props['hub']['size']['z']}" />
+          </geometry>
+          <material name="red"/>
+        </visual>
+      </xacro:if>
       <collision>
-        <origin xyz="0 0 0" rpy="${flipY*pi/2} 0 0" />
+        <origin xyz="0 0 ${-wheel_props['hub']['size']['z']/2.0}" rpy="0 0 0" />
         <geometry>
-          <!--mesh filename="package://mobile_robot_description/meshes/visual/wheel.stl" -->
-          <cylinder length="${caster_wheel_width}" radius="${caster_wheel_radius}" />
+          <box size="${wheel_props['hub']['size']['x']} ${wheel_props['hub']['size']['y']} ${wheel_props['hub']['size']['z']}" />
         </geometry>
       </collision>
     </link>
-    <gazebo reference="${locationprefix}_caster_wheel_link">
-        <material>Gazebo/DarkGrey</material>
+    <joint name="${prefix}_caster_rotation_joint" type="continuous">
+      <origin xyz="${wheel_props['hub']['dx']} ${-wheel_props['hub']['dy'] * locationright} ${wheel_props['hub']['dz']}" 
+              rpy="0 0 0" />
+      <parent link="base_link" />
+      <child link="${prefix}_caster_rotation_link" />
+      <axis xyz="0 0 1" />
+      <dynamics damping="0.01" friction="0.0"/>
+    </joint>
+    <gazebo reference="${prefix}_caster_rotation_link">
+      <material>Gazebo/Grey</material>
+    </gazebo>
+
+
+    <!-- caster wheel -->
+    <link name="${prefix}_caster_wheel_link">
+      <xacro:cylinder_inertia m="${wheel_props['wheel']['mass']}" 
+                            r="${wheel_props['wheel']['radius']}" 
+                            l="${wheel_props['wheel']['length']}">
+        <!-- TODO unused block error?: origin xyz="0 0 0" rpy="${pi/2} 0 0" /-->
+      </xacro:cylinder_inertia>
+      <xacro:if value="${wheel_props['wheel']['mesh'] != '' }" >
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry>
+            <mesh filename="package://${package_name}/meshes/${robot_name}/${wheel_props['wheel']['mesh']}" />
+          </geometry>
+          <!-- TODO use this?: xacro:insert_block name="material_dark_grey" /-->
+          <material name="material_dark_grey"/>
+        </visual>
+      </xacro:if>
+      <xacro:if value="${wheel_props['wheel']['mesh'] == '' }" >
+        <visual>
+          <origin xyz="0 0 0" rpy="${pi/2} 0 0" />
+          <geometry>
+            <cylinder length="${wheel_props['wheel']['length']}" radius="${wheel_props['wheel']['radius']}" />
+          </geometry>
+          <material name="red"/>
+        </visual>
+      </xacro:if>
+      <collision>
+        <origin xyz="0 0 0" rpy="${pi/2} 0 0" />
+        <geometry>
+          <cylinder length="${wheel_props['wheel']['length']}" radius="${wheel_props['wheel']['radius']}" />
+        </geometry>
+      </collision>
+    </link>
+    <joint name="${prefix}_caster_wheel_joint" type="continuous">
+      <origin xyz="${wheel_props['wheel']['dx']} ${-wheel_props['wheel']['dy'] * locationright} ${wheel_props['wheel']['dz']}" 
+              rpy="0 0 0" />
+      <parent link="${prefix}_caster_rotation_link" />
+      <child link="${prefix}_caster_wheel_link" />
+      <axis xyz="0 1 0" />
+    </joint>
+    <gazebo reference="${prefix}_caster_wheel_link">
+      <material>Gazebo/DarkGrey</material>
     </gazebo>
   </xacro:macro>
 
@@ -139,7 +217,11 @@
         <xacro:insert_block name="origin" />
         <geometry>
           <!-- The folder path get a folder_name global parameter -->
+<<<<<<< HEAD
           <mesh filename="package://${package_name}/meshes/${mesh}" />
+=======
+          <mesh filename="package://${package_name}/meshes/${robot_name}/${mesh}" />
+>>>>>>> 9360dda1a6d989eecddd3a32787117e0e6d87a18
         </geometry>
         <material name="white" />
       </visual>
@@ -206,7 +288,18 @@
   <material name="red">
     <color rgba="0.8 0.0 0.0 1.0"/>
   </material>
+  <material name="silver">
+    <color rgba="0.79 0.82 0.93 1"/>
+  </material>
+  <material name="material_dark_grey">
+    <color rgba="0.3 0.3 0.3 1"/>
+  </material>
+  
 
-
+  <!-- TODO use this?: xacro:property name="material_silver">
+    <material name="silver">
+      <color rgba="0.79 0.82 0.93 1" />
+    </material>
+  </xacro:property-->
 
 </robot>

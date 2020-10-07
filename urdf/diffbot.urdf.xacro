@@ -2,14 +2,14 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="mobile_robot">
 
   <xacro:property name="package_name" value="mobile_robot_description"/>
-  <xacro:property name="robot_name" value="quimera"/>
+  <xacro:property name="robot_name" value="diffbot"/>
 
   <xacro:include filename="$(find ${package_name})/urdf/include/common_macros.urdf.xacro" />
   
   <!-- <xacro:set_package_name /> -->
 
-  <xacro:property name="back_wheel_yaml" value="$(find ${package_name})/config/back_wheel.yaml" />
-  <xacro:property name="back_wheel_props" value="${load_yaml(back_wheel_yaml)}"/>
+  <xacro:property name="caster_wheel_yaml" value="$(find ${package_name})/config/${robot_name}/caster_wheel.yaml" />
+  <xacro:property name="caster_wheel_props" value="${load_yaml(caster_wheel_yaml)}"/>
 
   <xacro:property name="front_wheel_yaml" value="$(find ${package_name})/config/${robot_name}/front_wheel.yaml" />
   <xacro:property name="front_wheel_props" value="${load_yaml(front_wheel_yaml)}"/>
@@ -17,32 +17,28 @@
   <xacro:property name="base_yaml" value="$(find ${package_name})/config/${robot_name}/base.yaml" />
   <xacro:property name="base_props" value="${load_yaml(base_yaml)}"/>
 
+
   <!-- Base link -->
   <xacro:base base_prop="${base_props}" mesh="${base_props['base']['mesh']}" >
     <origin xyz="0 0 0" rpy="0 0 0" />
-  </xacro:base> 
-  <!-- Back Wheels -->
-  <xacro:wheel prefix="back_right" reflect="-1"
-                      wheel_props="${back_wheel_props}"
-                      base_props="${base_props}"                    
-                      mesh="${back_wheel_props['wheel']['mesh']}">
-  </xacro:wheel>
+  </xacro:base>
 
-  <xacro:wheel prefix="back_left" reflect="1"
-                      wheel_props="${back_wheel_props}"
-                      base_props="${base_props}"
-                      mesh="${back_wheel_props['wheel']['mesh']}">
-  </xacro:wheel>
+  <!-- Back Caster Wheel -->
+  <xacro:caster_wheel prefix="caster_wheel" reflect="-1"
+                      wheel_props="${caster_wheel_props}">
+  </xacro:caster_wheel>
 
   <!-- Front Wheels -->
   <xacro:wheel prefix="front_right" reflect="-1" 
                       wheel_props="${front_wheel_props}"
-                      base_props="${base_props}"> 
+                      base_props="${base_props}"
+                      mesh="${front_wheel_props['wheel']['mesh']}"> 
   </xacro:wheel>
 
   <xacro:wheel prefix="front_left" reflect="1" 
                       wheel_props="${front_wheel_props}"
-                      base_props="${base_props}"> 
+                      base_props="${base_props}"
+                      mesh="${front_wheel_props['wheel']['mesh']}"> 
   </xacro:wheel>
        
 
