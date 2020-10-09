@@ -6,7 +6,10 @@
   <xacro:property name="package_name" value="${package_name}" scope="global"/>  
 </xacro:macro>
 
-<!--Wheel link & joint macro-->
+<!--
+  Xacro to create a wheel link and the respective joint
+   
+-->
   <xacro:macro name="wheel"
                params="prefix reflect wheel_props base_props mesh:='' ">
 
@@ -217,11 +220,7 @@
         <xacro:insert_block name="origin" />
         <geometry>
           <!-- The folder path get a folder_name global parameter -->
-<<<<<<< HEAD
-          <mesh filename="package://${package_name}/meshes/${mesh}" />
-=======
           <mesh filename="package://${package_name}/meshes/${robot_name}/${mesh}" />
->>>>>>> 9360dda1a6d989eecddd3a32787117e0e6d87a18
         </geometry>
         <material name="white" />
       </visual>
