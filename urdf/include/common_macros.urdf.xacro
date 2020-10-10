@@ -6,9 +6,18 @@
   <xacro:property name="package_name" value="${package_name}" scope="global"/>  
 </xacro:macro>
 
-<!--
-  Xacro to create a wheel link and the respective joint
-   
+<!-- ===================== Wheel xacro =========================================
+
+  Xacro to create a wheel link and the respective joint. For more detail information and usage, see:
+    https://github.com/pxalcantara/mobile_robot_description/wiki/Wheel-xacro
+
+  params:
+  - prefix [string]: used to diferentiate the link and joint name;
+  - reflect [1/-1]: value to set the side of the wheel;
+  - wheel_props [dictionary]: wheel properties;
+  - base_props [dictionary]: base link properties;
+  - mesh [string]: file name of the wheel mesh;
+    - DEFAULT Value -> Empty string  
 -->
   <xacro:macro name="wheel"
                params="prefix reflect wheel_props base_props mesh:='' ">
@@ -57,6 +66,7 @@
       <origin xyz="${pos_x_joint} ${reflect* pos_y_joint} ${pos_z_joint}" rpy="0 0 0"/>
     </joint>
   </xacro:macro>
+<!-- ======================================================================= -->
 
 <!-- Caster wheel link & joint macro -->
   <!-- locationprefix locationright wheel_base_dx TODO remove -->
@@ -205,8 +215,15 @@
     </gazebo>
   </xacro:macro>
 
+<!-- ===================== Base xacro ==========================================
 
-<!--Base macro-->
+  Xacro to create the base link. For more detail information and usage, see:
+    https://github.com/pxalcantara/mobile_robot_description/wiki/Base-xacro
+
+  params:
+  - base_props [dictionary]: base link properties;
+  - origin [block]: origin, position and orientation of the link;
+-->
   <xacro:macro name="base"
                params="base_prop mesh:='' *origin ">
     <link name="base_link">
@@ -241,8 +258,19 @@
     </collision>
     </link>
   </xacro:macro> 
+<!-- ======================================================================= -->
 
-<!--Intertial macros-->
+<!-- ======================= Intertial macros ===============================-->
+<!-- ===================== Cylinder intertia xacro =============================
+
+  Xacro with the intertial block of a cylinder. For more detail information and usage, see:
+    https://github.com/pxalcantara/mobile_robot_description/wiki/Inertia-xacro
+
+  params:
+  - m [float]: link mass;
+  - r [float]: cylinder radius;
+  - l [float]: cylinder lenght (height);
+-->
   <xacro:macro name="cylinder_inertia" params="m r l">
     <inertial>
       <mass value="${m}"/>
@@ -251,6 +279,17 @@
     </inertial>
   </xacro:macro>
 
+<!-- ===================== Box intertia xacro ==================================
+
+  Xacro with the intertial block of a box. For more detail information and usage, see:
+    https://github.com/pxalcantara/mobile_robot_description/wiki/Inertia-xacro
+
+  params:
+  - m [float]: link mass;
+  - x [float]: link dimension on the X-axis;
+  - y [float]: link dimension on the Y-axis;
+  - z [float]: link dimension on the Z-axis;
+-->
  <xacro:macro name="box_inertia" params="m x y z">
     <inertial>
       <mass value="${m}"/>
@@ -260,6 +299,15 @@
     </inertial>
   </xacro:macro>
 
+<!-- ===================== Sphere intertia xacro ===============================
+
+  Xacro with the intertial block of a sphere. For more detail information and usage, see:
+    https://github.com/pxalcantara/mobile_robot_description/wiki/Inertia-xacro
+
+  params:
+  - m [float]: link mass;
+  - r [float]: sphere radius;
+-->
   <xacro:macro name="sphere_inertia" params="m r">
     <inertial>
       <mass value="${m}"/>
@@ -267,14 +315,27 @@
     </inertial>
   </xacro:macro>
 
+<!-- ===================== Default intertial xacro =============================
+
+  Xacro with a identity intertial block. For more detail information and usage, see:
+    https://github.com/pxalcantara/mobile_robot_description/wiki/Inertia-xacro
+
+  params:
+  - m [float]: link mass;
+-->
   <xacro:macro name="default_inertial" params="mass">
     <inertial>
       <mass value="${mass}"/>
       <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
     </inertial>
   </xacro:macro>
+<!-- ========================================================================-->
 
-<!--Color Properties-->
+<!-- ===================== Material ============================================
+
+  RVIZ material RGBA definition.
+-->
+
   <material name="blue">
     <color rgba="0 0 0.8 1"/>
   </material>
@@ -293,12 +354,6 @@
   <material name="material_dark_grey">
     <color rgba="0.3 0.3 0.3 1"/>
   </material>
+<!-- ========================================================================-->
   
-
-  <!-- TODO use this?: xacro:property name="material_silver">
-    <material name="silver">
-      <color rgba="0.79 0.82 0.93 1" />
-    </material>
-  </xacro:property-->
-
 </robot>
