@@ -1,0 +1,8 @@
+wheel:
+  mass: 1.0        # Wheel mass in Kg
+  radius: 0.053     # Wheel radius in m
+  length: 0.033     # Wheel length in m, considering is as a cylinder
+  mesh: ''          # Name of the mesh files. Leave it empty ('') to have a red wheel
+  x_offset: 0.05
+  y_offset: -0.002
+  z_offset: 0.01

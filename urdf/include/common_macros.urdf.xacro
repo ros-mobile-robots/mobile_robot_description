@@ -222,6 +222,8 @@
 
   params:
   - base_props [dictionary]: base link properties;
+  - mesh [string]: file name of the link mesh;
+    - DEFAULT Value -> Empty string  
   - origin [block]: origin, position and orientation of the link;
 -->
   <xacro:macro name="base"
