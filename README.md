@@ -44,3 +44,9 @@ In the ***common_macro.urdf.xacro***, there is the xacro modules:
 - **[Base link](https://github.com/pxalcantara/mobile_robot_description/blob/48819dcec6f897b7d02e8d4aa6c66d803ddf6239/urdf/include/common_macros.urdf.xacro#L206):** A macro to add a base link that can be parametrized using YAML file. The `collision` of this link has a box shape and the `visual` can have a basic shape or use a mesh. 
 - **[Wheel](https://github.com/pxalcantara/mobile_robot_description/blob/48819dcec6f897b7d02e8d4aa6c66d803ddf6239/urdf/include/common_macros.urdf.xacro#L9):** A macro to add the wheel link, joint and transmission. This macro can be parametrized using YAML file. The `collision` has the cylinder shape and the `visual` can have a basic cylinder shape or a mesh.
 - **[Caster_wheel](https://github.com/pxalcantara/mobile_robot_description/blob/48819dcec6f897b7d02e8d4aa6c66d803ddf6239/urdf/include/common_macros.urdf.xacro#L58):** A macro to add a caster wheel link and joints. The caster_wheel only has passive joints, there is no `transmission` tag. This macro can be parametrized using YAML file. The `collision` has basic shapes and the `visual` can have a basic shapes or meshes. 
+
+For more detailed information about the xacro modules or about the usage, see the [Wiki](https://github.com/pxalcantara/mobile_robot_description/wiki)
+
+## Contributing
+If you have any comments, doubts, or suggestions, I'll be more than happy to know them, so, feel free to open an issue or a Pull Request with your collaboration.
+
