@@ -24,14 +24,12 @@
   <!-- Back Wheels -->
   <xacro:wheel prefix="back_right" reflect="-1"
                       wheel_props="${back_wheel_props}"
-                      base_props="${base_props}"                    
-                      mesh="${back_wheel_props['wheel']['mesh']}">
+                      base_props="${base_props}">                    
   </xacro:wheel>
 
   <xacro:wheel prefix="back_left" reflect="1"
                       wheel_props="${back_wheel_props}"
-                      base_props="${base_props}"
-                      mesh="${back_wheel_props['wheel']['mesh']}">
+                      base_props="${base_props}">
   </xacro:wheel>
 
   <!-- Front Wheels -->
