@@ -1,17 +1,8 @@
 wheel:
-# Wheel mass in Kilograms
-  mass: 1.0         
-# Wheel radius in meters
-  radius: 0.053     
-# Wheel length in meters, considering is as a cylinder
-  length: 0.033     
-# Name of the mesh files. Leave it empty ('') to have a red wheel.  
-  mesh: 'wheel.dae'     
-# Offset distance, in meters, from the outer face of the base to the center of the wheel.
-  x_offset: 0.128
-# Offset distance, in meters, from the outer face of the base to the inner face of the wheel. 
-# The outer face of the base is the reference so, if the wheels are inside the base the value must be
-# negative. If the wheels are outside, must be positive.
-  y_offset: -0.052
-# Offset distance, in meters, from the bottom face of the base to the center of the wheel.
-  z_offset: 0.05
+  mass: 1.0            # Wheel mass in Kilograms       
+  radius: 0.053        # Wheel radius in meters 
+  length: 0.033        # Wheel length in meters, considering it as a cylinder 
+  mesh: 'wheel.dae'    # Name of the mesh files. Leave it empty ('') to have a red wheel. 
+  x_offset: 0.128      # Offset distance on the x-axis in meters.
+  y_offset: -0.052     # Offset distance on the y-axis in meters.
+  z_offset: 0.05       # Offset distance on the z-axis in meters.
