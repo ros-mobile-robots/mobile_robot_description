@@ -6,8 +6,8 @@ ROS Package with a modular structure to create mobile robots with differential d
 
 
 - [Package Organization](#Package-Organization)
-- [Installation](##Installation)
-- [Usage](##Usage)
+- [Installation](#Installation)
+- [Usage](#Usage)
 - [Contributing](#Contributing)
 
 ## Package Organization
