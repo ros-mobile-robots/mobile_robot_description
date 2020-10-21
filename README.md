@@ -5,10 +5,10 @@ ROS Package with a modular structure to create mobile robots with differential d
 ![wheel_config](docs/wheel_config.gif)
 
 
-- [Package Organization](##Package-Organization)
+- [Package Organization](#Package-Organization)
 - [Installation](##Installation)
 - [Usage](##Usage)
-- [Contributing](##Contributing)
+- [Contributing](#Contributing)
 
 ## Package Organization
 This project has the following folder structure.
