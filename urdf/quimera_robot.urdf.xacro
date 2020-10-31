@@ -7,8 +7,6 @@
   <xacro:include filename="$(find ${package_name})/urdf/include/common_macros.urdf.xacro" />
   <xacro:include filename="$(find ${package_name})/urdf/quimera_robot.gazebo.xacro" />
   
-  <!-- <xacro:set_package_name /> -->
-
   <xacro:property name="back_wheel_yaml" value="$(find ${package_name})/config/${robot_name}/back_wheel.yaml" />
   <xacro:property name="back_wheel_props" value="${load_yaml(back_wheel_yaml)}"/>
 
@@ -22,6 +20,7 @@
   <xacro:base base_prop="${base_props}" mesh="${base_props['base']['mesh']}" >
     <origin xyz="0 0 0" rpy="0 0 ${pi/2}" />
   </xacro:base> 
+  
   <!-- Back Wheels -->
   <xacro:wheel prefix="back_right" reflect="-1"
                       wheel_props="${back_wheel_props}"
