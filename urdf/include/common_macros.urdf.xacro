@@ -254,6 +254,7 @@
       </visual>
     </xacro:if>  
     <collision>
+      <origin xyz="0 0 0.09" rpy="0 0 0"/>
       <geometry>
         <box size="${base_prop['base']['x_size']} ${base_prop['base']['y_size']} ${base_prop['base']['z_size']}"/>
       </geometry>

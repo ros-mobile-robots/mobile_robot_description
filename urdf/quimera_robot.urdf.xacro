@@ -5,6 +5,7 @@
   <xacro:property name="robot_name" value="quimera"/>  
 
   <xacro:include filename="$(find ${package_name})/urdf/include/common_macros.urdf.xacro" />
+  <xacro:include filename="$(find ${package_name})/urdf/quimera_robot.gazebo.xacro" />
   
   <!-- <xacro:set_package_name /> -->
 
@@ -19,7 +20,7 @@
 
   <!-- Base link -->
   <xacro:base base_prop="${base_props}" mesh="${base_props['base']['mesh']}" >
-    <origin xyz="0 0 0" rpy="${pi/2} 0 -${pi/2}" />
+    <origin xyz="0 0 0" rpy="0 0 ${pi/2}" />
   </xacro:base> 
   <!-- Back Wheels -->
   <xacro:wheel prefix="back_right" reflect="-1"
@@ -45,7 +46,5 @@
                       base_props="${base_props}"> 
   </xacro:wheel>
        
-
-  <!-- <xacro:include filename="$(find mobile_description)/urdf/mobile_robot_gazebo_plugins.xacro"/>  -->
 
 </robot>
