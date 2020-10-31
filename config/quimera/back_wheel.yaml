@@ -5,4 +5,4 @@ wheel:
   mesh: 'wheel.dae'    # Name of the mesh files. Leave it empty ('') to have a red wheel. 
   x_offset: 0.128      # Offset distance on the x-axis in meters.
   y_offset: -0.052     # Offset distance on the y-axis in meters.
-  z_offset: 0.05       # Offset distance on the z-axis in meters.
+  z_offset: 0.045       # Offset distance on the z-axis in meters.
