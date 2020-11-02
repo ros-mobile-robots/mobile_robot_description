@@ -2,9 +2,10 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="quimera_robot">
 
   <xacro:property name="package_name" value="mobile_robot_description"/>
-  <xacro:property name="robot_name" value="quimera"/>  
+  <xacro:property name="robot_name" value="quimera_robot"/>  
 
   <xacro:include filename="$(find ${package_name})/urdf/include/common_macros.urdf.xacro" />
+  <xacro:include filename="$(find ${package_name})/urdf/include/common_sensors.xacro" />
   <xacro:include filename="$(find ${package_name})/urdf/quimera_robot.gazebo.xacro" />
   
   <xacro:property name="back_wheel_yaml" value="$(find ${package_name})/config/${robot_name}/back_wheel.yaml" />
@@ -44,6 +45,11 @@
                       wheel_props="${front_wheel_props}"
                       base_props="${base_props}"> 
   </xacro:wheel>
-       
+
+  <!-- Sensors -->
+
+  <xacro:hokuyo_sensor parent_link="base_link" >
+    <origin xyz="-0.02 0 ${base_props['base']['z_size'] + 0.05}" rpy="0 0 0" />
+  </xacro:hokuyo_sensor>    
 
 </robot>
