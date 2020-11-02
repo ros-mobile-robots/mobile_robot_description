@@ -1,9 +1,14 @@
 # mobile_robot_description
 ROS Package with a modular structure to create mobile robots with differential drive configuration. The purpose of this package is to provide xacro modules to make it easier to build the URDF description file of your differential robot. To active this purpose, this package has some modules that are inside the file ***common_macro.urdf.xacro*** that can be parametrized using YAML files, making it easier, fast, and more flexible to create your robot model.
 
-- [Package Organization](##package-organization)
-- [Installation](##installation)
-- [Usage](##usage)
+![base_config](docs/base_config.gif)  
+![wheel_config](docs/wheel_config.gif)
+
+
+- [Package Organization](#Package-Organization)
+- [Installation](#Installation)
+- [Usage](#Usage)
+- [Contributing](#Contributing)
 
 ## Package Organization
 This project has the following folder structure.
