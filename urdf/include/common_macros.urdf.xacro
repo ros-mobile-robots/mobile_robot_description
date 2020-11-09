@@ -228,6 +228,75 @@
     </gazebo>
   </xacro:macro>
 
+<!-- ===================== Motor xacro =========================================
+
+  Xacro to create a motor link and the respective joint. For more detail information and usage, see:
+    https://github.com/pxalcantara/mobile_robot_description/wiki/Motor-xacro
+
+  params:
+  - prefix [string]: used to diferentiate the link and joint name;
+  - reflect [1/-1]: value to set the side of the motor;
+  - motor_props [dictionary]: motor properties;
+  - base_props [dictionary]: base link properties;
+  - mesh [string]: file name of the motor mesh;
+    - DEFAULT Value -> Empty string
+-->
+  <xacro:macro name="motor"
+               params="prefix reflect motor_props base_props mesh:='' ">
+
+  <xacro:property name="pos_x_joint"
+     value="${(base_props['base']['x_size']/2) - motor_props['x_offset']}"/>
+  <xacro:property name="pos_y_joint"
+    value="${(base_props['base']['y_size']/2) + motor_props['y_offset'] + (motor_props['y_size']/2)}"/>
+  <xacro:property name="pos_z_joint" value="${motor_props['z_offset']}"/>
+
+    <link name="${prefix}_motor">
+    <xacro:if value="${mesh != '' }" >
+      <visual>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0 ${pi/2.0*(reflect - 1)}"/>
+        <geometry>
+          <mesh filename="package://${package_name}/meshes/${robot_name}/${mesh}" />
+        </geometry>
+        <material name="blue"/>
+      </visual>
+    </xacro:if>
+    <xacro:if value="${mesh == '' }" >
+      <visual>
+        <origin xyz="0.0 0 0" rpy="${pi/2} 0 0"/>
+         <geometry>
+          <box size="${motor_props['x_size']} ${motor_props['y_size']} ${motor_props['z_size']}"/>
+        </geometry>
+        <material name="red"/>
+      </visual>
+    </xacro:if>
+      <collision>
+        <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
+        <geometry>
+          <box size="${motor_props['x_size']} ${motor_props['y_size']} ${motor_props['z_size']}"/>
+        </geometry>
+      </collision>
+      <xacro:box_inertia m="${motor_props['mass']}"
+                         x="${motor_props['x_size']}"
+                         y="${motor_props['y_size']}"
+                         z="${motor_props['z_size']}">
+      </xacro:box_inertia>
+    </link>
+
+    <joint name="${prefix}_motor_joint" type="fixed">
+      <parent link="base_link"/>
+      <child link="${prefix}_motor"/>
+      <origin xyz="${pos_x_joint} ${reflect* pos_y_joint} ${pos_z_joint}" rpy="0 ${-pi/2.0*(reflect - 1)} 0"/>
+      <axis xyz="0 1 0" rpy="0 0 0" />
+      <!--origin xyz="${transX} ${reflect * (transY - wheel_width)} ${transZ}" rpy="${-pi/2.0*(reflect - 1)} 0 0" /--> 
+      <!--axis xyz="0 1 0" rpy="0 0 ${pi/2.0*(reflect - 1)}" /-->
+    </joint>
+
+    <!--gazebo reference="${fb}_${lr}_motor">
+      <material>Gazebo/SkyBlue</material>
+      <turnGravityOff>false</turnGravityOff>
+    </gazebo-->
+  </xacro:macro>
+
 <!-- ===================== Base xacro ==========================================
 
   Xacro to create the base link. For more detail information and usage, see:
