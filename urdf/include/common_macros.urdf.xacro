@@ -17,7 +17,7 @@
   - wheel_props [dictionary]: wheel properties;
   - base_props [dictionary]: base link properties;
   - mesh [string]: file name of the wheel mesh;
-    - DEFAULT Value -> Empty string  
+    - DEFAULT Value -> Empty string
 -->
   <xacro:macro name="wheel"
                params="prefix reflect wheel_props base_props mesh:='' ">
@@ -32,9 +32,10 @@
     <xacro:if value="${mesh != '' }" >
       <visual>
         <origin xyz="0.0 0 0" rpy="${pi/2} 0 ${pi/2.0*(reflect - 1)}"/>
-         <geometry>
-        <mesh filename="package://${package_name}/meshes/${robot_name}/${mesh}" />
+        <geometry>
+          <mesh filename="package://${package_name}/meshes/${robot_name}/${mesh}" />
         </geometry>
+        <material name="dark_grey"/>
       </visual>
     </xacro:if>
     <xacro:if value="${mesh == '' }" >
@@ -52,8 +53,8 @@
           <cylinder radius="${wheel_props['wheel']['radius']}" length="${wheel_props['wheel']['length']}"/>
         </geometry>
       </collision>
-      <xacro:cylinder_inertia m="${wheel_props['wheel']['mass']}" 
-                              r="${wheel_props['wheel']['radius']}" 
+      <xacro:cylinder_inertia m="${wheel_props['wheel']['mass']}"
+                              r="${wheel_props['wheel']['radius']}"
                               l="${wheel_props['wheel']['length']}">
       </xacro:cylinder_inertia> 
     </link>
@@ -138,9 +139,9 @@
       <inertial>
         <origin xyz="0 0 ${-wheel_props['hub']['size']['z']/2.0}" rpy="0 0 0" />
         <mass value="${wheel_props['hub']['mass']}" />
-        <xacro:box_inertia  m="${wheel_props['hub']['mass']}" 
-                            x="${wheel_props['hub']['size']['x']}" 
-                            y="${wheel_props['hub']['size']['y']}" 
+        <xacro:box_inertia  m="${wheel_props['hub']['mass']}"
+                            x="${wheel_props['hub']['size']['x']}"
+                            y="${wheel_props['hub']['size']['y']}"
                             z="${wheel_props['hub']['size']['z']}" />
       </inertial>
       <xacro:if value="${wheel_props['hub']['mesh'] != '' }" >
@@ -184,8 +185,8 @@
 
     <!-- caster wheel -->
     <link name="${prefix}_caster_wheel_link">
-      <xacro:cylinder_inertia m="${wheel_props['wheel']['mass']}" 
-                            r="${wheel_props['wheel']['radius']}" 
+      <xacro:cylinder_inertia m="${wheel_props['wheel']['mass']}"
+                            r="${wheel_props['wheel']['radius']}"
                             l="${wheel_props['wheel']['length']}">
         <!-- TODO unused block error?: origin xyz="0 0 0" rpy="${pi/2} 0 0" /-->
       </xacro:cylinder_inertia>
@@ -196,7 +197,7 @@
             <mesh filename="package://${package_name}/meshes/${robot_name}/${wheel_props['wheel']['mesh']}" />
           </geometry>
           <!-- TODO use this?: xacro:insert_block name="material_dark_grey" /-->
-          <material name="material_dark_grey"/>
+          <material name="dark_grey"/>
         </visual>
       </xacro:if>
       <xacro:if value="${wheel_props['wheel']['mesh'] == '' }" >
@@ -366,7 +367,7 @@
   <material name="silver">
     <color rgba="0.79 0.82 0.93 1"/>
   </material>
-  <material name="material_dark_grey">
+  <material name="dark_grey">
     <color rgba="0.3 0.3 0.3 1"/>
   </material>
 <!-- ========================================================================-->
