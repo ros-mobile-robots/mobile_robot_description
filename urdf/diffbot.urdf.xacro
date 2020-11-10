@@ -5,8 +5,8 @@
   <xacro:property name="robot_name" value="diffbot"/>
 
   <xacro:include filename="$(find ${package_name})/urdf/include/common_macros.urdf.xacro" />
-  
-  <!-- <xacro:set_package_name /> -->
+  <xacro:include filename="$(find ${package_name})/urdf/include/common_sensors.xacro" />
+  <xacro:include filename="$(find ${package_name})/urdf/diffbot.gazebo.xacro" />
 
   <xacro:property name="caster_wheel_yaml" value="$(find ${package_name})/config/${robot_name}/caster_wheel.yaml" />
   <xacro:property name="caster_wheel_props" value="${load_yaml(caster_wheel_yaml)}"/>
@@ -21,13 +21,16 @@
   <xacro:property name="base_props" value="${load_yaml(base_yaml)}"/>
 
 
+  <!-- Footprint link -->
+  <xacro:footprint wheel_props="${front_wheel_props}" />
+
   <!-- Base link -->
   <xacro:base base_prop="${base_props}" mesh="${base_props['base']['mesh']}" >
     <origin xyz="0 0 0" rpy="0 0 0" />
   </xacro:base>
 
   <!-- Back Caster Wheel -->
-  <xacro:caster_wheel prefix="caster_wheel" reflect="-1"
+  <xacro:caster_wheel prefix="rear" reflect="-1"
                       wheel_props="${caster_wheel_props}">
   </xacro:caster_wheel>
 
@@ -59,6 +62,7 @@
   </xacro:motor>
        
 
-  <!-- <xacro:include filename="$(find mobile_description)/urdf/mobile_robot_gazebo_plugins.xacro"/>  -->
+  <!-- Sensors -->
+
 
 </robot>
