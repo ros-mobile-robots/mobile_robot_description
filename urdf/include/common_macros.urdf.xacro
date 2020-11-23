@@ -275,6 +275,28 @@
   </xacro:macro> 
 <!-- ======================================================================= -->
 
+<!-- ===================== Footprint xacro ==========================================
+
+  Xacro to create the footprint link and creat a fixed joint with the base link.
+
+  params:
+  - wheel_props [dictionary]: wheel link properties;
+-->
+  <xacro:macro name="footprint"
+               params="wheel_props">
+    <!-- Base-Footprint -->
+    <!-- base_footprint is a fictitious link(frame) that is on the ground right below base_link origin -->
+    <link name="base_footprint" />
+
+    <!-- Joint to connect base_footprint with base_link -->
+    <joint name="base_footprint_joint" type="fixed">
+      <parent link="base_footprint"/>
+      <child link="base_link" />
+      <origin xyz="0 0 ${wheel_props['wheel']['radius'] - wheel_props['wheel']['z_offset']}" rpy="0 0 0" />
+    </joint>
+  </xacro:macro>
+<!-- ======================================================================= -->
+
 <!-- ======================= Intertial macros ===============================-->
 <!-- ===================== Cylinder intertia xacro =============================
 
