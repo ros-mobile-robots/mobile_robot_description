@@ -8,7 +8,7 @@ if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   # find_package(launch_testing_ament_cmake REQUIRED)
 
-  # ament_lint_auto_find_test_dependencies()
+  ament_lint_auto_find_test_dependencies()
   # add_launch_test(test/spawn_robot.test.py)
 endif()
 
@@ -17,6 +17,7 @@ install(DIRECTORY
   launch 
   urdf
   config
+  rviz
   DESTINATION share/${PROJECT_NAME}
   # PATTERN "view_robot.launch.py" EXCLUDE
 )
