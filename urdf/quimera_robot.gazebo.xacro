@@ -51,6 +51,11 @@
       <max_wheel_torque>30</max_wheel_torque>
       <max_wheel_acceleration>1.0</max_wheel_acceleration>
     </plugin>
+
+  </gazebo>
+
+  <gazebo reference="base_link">
+    <material>Gazebo/White</material>
   </gazebo>     
   
 
