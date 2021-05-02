@@ -33,8 +33,8 @@ def generate_launch_description():
     # pkg_share = get_package_share_directory('diffbot2_description')
 
     # Get rviz config
-    rviz_config = PathJoinSubstitution(
-        [FindPackageShare('mobile_robot_description'), 'rviz/view_robot.rviz'
+    rviz_config = PathJoinSubstitution([
+        FindPackageShare('mobile_robot_description'), 'rviz/view_robot.rviz'
     ])
 
     # Add launch description variables

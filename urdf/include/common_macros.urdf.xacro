@@ -33,7 +33,7 @@
       <visual>
         <origin xyz="0.0 0 0" rpy="${pi/2} 0 ${pi/2.0*(reflect - 1)}"/>
          <geometry>
-        <mesh filename="package://${package_name}/meshes/${robot_name}/${mesh}" />
+        <mesh filename="file://$(find ${package_name})/meshes/${robot_name}/${mesh}" />
         </geometry>
       </visual>
     </xacro:if>
@@ -66,7 +66,7 @@
       <origin xyz="${pos_x_joint} ${reflect* pos_y_joint} ${pos_z_joint}" rpy="0 0 0"/>
     </joint>
 
-    <transmission name="${prefix}_wheel_transmission">
+    <!-- <transmission name="${prefix}_wheel_transmission">
       <type>transmission_interface/SimpleTransmission</type>
       <joint name="${prefix}_wheel_joint">
         <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
@@ -75,7 +75,7 @@
         <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
-    </transmission>
+    </transmission> -->
     
   </xacro:macro>
 <!-- ======================================================================= -->
@@ -147,7 +147,7 @@
         <visual>
           <origin xyz="0 0 ${-wheel_props['hub']['size']['z']/2.0}" rpy="0 0 0" />
           <geometry>
-            <mesh filename="package://${package_name}/meshes/${robot_name}/${wheel_props['hub']['mesh']}" />
+            <mesh filename="file://${package_name}/meshes/${robot_name}/${wheel_props['hub']['mesh']}" />
           </geometry>
           <!-- xacro:insert_block name="material_silver" / TODO use this block? -->
           <material name="silver"/>
@@ -251,7 +251,7 @@
         <xacro:insert_block name="origin" />
         <geometry>
           <!-- The folder path get a folder_name global parameter -->
-          <mesh filename="package://${package_name}/meshes/${robot_name}/${mesh}" />
+          <mesh filename="file://$(find ${package_name})/meshes/${robot_name}/${mesh}" />
         </geometry>
         <material name="white" />
       </visual>

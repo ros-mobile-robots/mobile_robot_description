@@ -56,7 +56,7 @@
 
   <xacro:hokuyo_sensor parent_link="base_link" >
     <origin xyz="-0.02 0 ${base_props['base']['z_size'] + 0.05}" rpy="0 0 0" />
-  </xacro:hokuyo_sensor>
+  </xacro:hokuyo_sensor> 
 
   <!-- <xacro:generic_camera name="camera" parent="base_link" ros_topic="image_raw"
                         cam_info_topic="camera_info" update_rate="30"

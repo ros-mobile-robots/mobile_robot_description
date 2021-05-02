@@ -18,6 +18,7 @@ install(DIRECTORY
   urdf
   config
   rviz
+  meshes
   DESTINATION share/${PROJECT_NAME}
   # PATTERN "view_robot.launch.py" EXCLUDE
 )
