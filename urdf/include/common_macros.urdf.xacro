@@ -98,7 +98,7 @@
         <visual>
             <origin xyz="0 0 ${-wheel_props['base']['size']['z']/2.0}" rpy="0 0 0" />
             <geometry>
-                <mesh filename="package://${package_name}/meshes/${robot_name}/${wheel_props['base']['mesh']}" />
+                <mesh filename="file://$(find ${package_name})/meshes/${robot_name}/${wheel_props['base']['mesh']}" />
             </geometry>
             <!-- xacro:insert_block name="material_silver" / TODO use this block? -->
             <material name="silver"/>
@@ -147,7 +147,7 @@
         <visual>
           <origin xyz="0 0 ${-wheel_props['hub']['size']['z']/2.0}" rpy="0 0 0" />
           <geometry>
-            <mesh filename="file://${package_name}/meshes/${robot_name}/${wheel_props['hub']['mesh']}" />
+            <mesh filename="file://$(find ${package_name})/meshes/${robot_name}/${wheel_props['hub']['mesh']}" />
           </geometry>
           <!-- xacro:insert_block name="material_silver" / TODO use this block? -->
           <material name="silver"/>
@@ -193,7 +193,7 @@
         <visual>
           <origin xyz="0 0 0" rpy="0 0 0" />
           <geometry>
-            <mesh filename="package://${package_name}/meshes/${robot_name}/${wheel_props['wheel']['mesh']}" />
+            <mesh filename="file://$(find ${package_name})/meshes/${robot_name}/${wheel_props['wheel']['mesh']}" />
           </geometry>
           <!-- TODO use this?: xacro:insert_block name="material_dark_grey" /-->
           <material name="material_dark_grey"/>

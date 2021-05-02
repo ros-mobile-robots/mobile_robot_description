@@ -13,7 +13,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://${package_name}/meshes/sensors/hokuyo.dae" />
+          <mesh filename="file://$(find ${package_name})/meshes/sensors/hokuyo.dae" />
         </geometry>
       </visual>
       <inertial>
@@ -60,10 +60,13 @@
           <stddev>0.01</stddev>
         </noise>
       </ray>
-      <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_gpu_laser.so">
-        <topicName>/${robot_name}/scan</topicName>
-        <frameName>hokuyo_link</frameName>
-      </plugin>
+      <plugin name="laserscan" filename="libgazebo_ros_ray_sensor.so">
+            <ros>
+              <namespace>/</namespace>
+              <remapping>~/out:=laserscan</remapping>
+            </ros>
+            <output_type>sensor_msgs/LaserScan</output_type>
+          </plugin>
     </sensor>
   </gazebo>
 </xacro:macro>
