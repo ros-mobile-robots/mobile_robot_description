@@ -21,6 +21,8 @@
       <update_rate>50</update_rate>
       <joint_name>back_right_wheel_joint</joint_name>
       <joint_name>back_left_wheel_joint</joint_name>
+      <joint_name>front_right_wheel_joint</joint_name>
+      <joint_name>front_left_wheel_joint</joint_name>
     </plugin>
 
     <plugin name="hoverboard_diff_drive" filename="libgazebo_ros_diff_drive.so">
@@ -44,7 +46,7 @@
 
       <odometry_topic>odom</odometry_topic>
       <odometry_frame>odom</odometry_frame>
-      <robot_base_frame>base_link</robot_base_frame>
+      <robot_base_frame>base_footprint</robot_base_frame>
 
       <max_wheel_torque>30</max_wheel_torque>
       <max_wheel_acceleration>1.0</max_wheel_acceleration>
