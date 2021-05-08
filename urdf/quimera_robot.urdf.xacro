@@ -54,15 +54,14 @@
 
   <!-- Sensors -->
 
-  <xacro:hokuyo_sensor parent_link="base_link" visualize="false">
+  <xacro:hokuyo_sensor parent_link="base_link" visualize="true">
     <origin xyz="-0.02 0 ${base_props['base']['z_size'] + 0.05}" rpy="0 0 0" />
-  </xacro:hokuyo_sensor> 
+  </xacro:hokuyo_sensor>
 
-  <!-- <xacro:generic_camera name="camera" parent="base_link" ros_topic="image_raw"
-                        cam_info_topic="camera_info" update_rate="30"
-                        res_x="800" res_y="800" image_format="R8G8B8" h_fov="1.4" >
-        <origin xyz="0 0 0" rpy="0 0 0" />
+  <xacro:camera_sensor parent_link="base_link" visualize="true">
+    <origin xyz="0.02 0 ${base_props['base']['z_size']}" rpy="0 0 0" />
+  </xacro:camera_sensor> 
 
-  </xacro:generic_camera>                       -->
+  
 
 </robot>
