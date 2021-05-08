@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-<xacro:macro name="hokuyo_sensor" params=" *joint_origin parent_link "> 
+<xacro:macro name="hokuyo_sensor" params=" *joint_origin parent_link visualize"> 
 
   <link name="hokuyo_link">
       <collision>
@@ -34,7 +34,7 @@
   <gazebo reference="hokuyo_link">
     <sensor type="gpu_ray" name="head_hokuyo_sensor">
       <pose>0 0 0 0 0 0</pose>
-      <visualize>false</visualize>
+      <visualize>${visualize}</visualize>
       <update_rate>40</update_rate>
       <ray>
         <scan>

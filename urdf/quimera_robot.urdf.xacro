@@ -54,7 +54,7 @@
 
   <!-- Sensors -->
 
-  <xacro:hokuyo_sensor parent_link="base_link" >
+  <xacro:hokuyo_sensor parent_link="base_link" visualize="false">
     <origin xyz="-0.02 0 ${base_props['base']['z_size'] + 0.05}" rpy="0 0 0" />
   </xacro:hokuyo_sensor> 
 
