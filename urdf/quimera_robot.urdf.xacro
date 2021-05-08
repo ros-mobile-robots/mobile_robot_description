@@ -54,13 +54,17 @@
 
   <!-- Sensors -->
 
-  <xacro:hokuyo_sensor parent_link="base_link" visualize="true">
+  <xacro:hokuyo_sensor parent_link="base_link" visualize="false">
     <origin xyz="-0.02 0 ${base_props['base']['z_size'] + 0.05}" rpy="0 0 0" />
   </xacro:hokuyo_sensor>
 
-  <xacro:camera_sensor parent_link="base_link" visualize="true">
+  <xacro:camera_sensor parent_link="base_link" visualize="false">
     <origin xyz="0.02 0 ${base_props['base']['z_size']}" rpy="0 0 0" />
-  </xacro:camera_sensor> 
+  </xacro:camera_sensor>
+
+  <xacro:imu_sensor parent_link="base_link">
+    <origin xyz="0.0 0.05 ${base_props['base']['z_size'] + 0.01}" rpy="0 0 0" />
+  </xacro:imu_sensor>  
 
   
 
