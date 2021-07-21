@@ -1,5 +1,5 @@
 # mobile_robot_description
-ROS Package with a modular structure to create mobile robots with differential drive configuration. The purpose of this package is to provide xacro modules to make it easier to build the URDF description file of your differential robot. To active this purpose, this package has some modules that are inside the file ***common_macro.urdf.xacro*** that can be parametrized using YAML files, making it easier, fast, and more flexible to create your robot model.
+ROS Package with a modular structure to create mobile robots with differential drive configuration. The purpose of this package is to provide xacro modules to make it easier to build the URDF description file of your differential robot. To active this purpose, this package has some modules that are inside the file ***common_macro.urdf.xacro*** that can be parametrized using YAML files, making it easier, fast, and more flexible to create your robot model. There is, also, ***common_sensors.xacro*** file with some commonly used sensors in mobile robots.
 
 ![base_config](docs/base_config.gif)  
 ![wheel_config](docs/wheel_config.gif)
@@ -26,8 +26,14 @@ This project has the following folder structure.
 To install this package, just clone it inside your ROS workspace, running:
 
 ``` 
-$ git clone https://github.com/pxalcantara/mobile_robot_description.git 
+$ git clone https://github.com/ros-mobile-robots/mobile_robot_description.git
 ```
+This command will clone the `master` branch which is compatible with "ROS 1". If you intend to use ROS 2 (Foxy), use this command:
+
+``` 
+$ git clone -b ros2-foxy https://github.com/ros-mobile-robots/mobile_robot_description.git
+```
+Check the `ros2-foxy` branch [documentation](https://github.com/ros-mobile-robots/mobile_robot_description/tree/ros2-foxy) to know some differences.
 
 ## Usage 
 The basic modules of this package are inside the file ***common_macro.urdf.xacro*** that is at *urdf/include* folder as described above. This file work as a library and you can add it to your robot description like [this](https://github.com/pxalcantara/mobile_robot_description/blob/48819dcec6f897b7d02e8d4aa6c66d803ddf6239/urdf/mobile_robot.urdf.xacro#L7):
