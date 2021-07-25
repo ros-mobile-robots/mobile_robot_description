@@ -13,7 +13,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://${package_name}/meshes/sensors/hokuyo.dae" />
+          <mesh filename="package://mobile_robot_description/meshes/sensors/hokuyo.dae" />
         </geometry>
       </visual>
       <inertial>

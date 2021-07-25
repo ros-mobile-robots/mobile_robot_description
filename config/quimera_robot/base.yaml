@@ -1,6 +1,0 @@
-base:
-  mass: 2.5               # Base mass in Kg
-  x_size: 0.195           # Dimension in x axis
-  y_size: 0.198           # Dimension in y axis
-  z_size: 0.182           # Dimension in z axis
-  mesh: 'quimera_struct_complete.dae'  # Name of the mesh files. Leave it empty ('') to have a white base.

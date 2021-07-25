@@ -5,6 +5,7 @@
   <xacro:property name="robot_name" value="mobile_robot"/>
 
   <xacro:include filename="$(find ${package_name})/urdf/include/common_macros.urdf.xacro" />
+  <xacro:include filename="$(find ${package_name})/urdf/quimera_robot.gazebo.xacro" />
   
   <!-- <xacro:set_package_name /> -->
 

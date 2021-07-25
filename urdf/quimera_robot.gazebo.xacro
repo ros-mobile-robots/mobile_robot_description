@@ -4,9 +4,10 @@
   <!-- ros_control plugin -->
   <gazebo>
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-      <robotNamespace>/quimera_robot</robotNamespace>
+      <robotNamespace>/mobile_robot</robotNamespace>
       <!--robotParam>/robot_description</robotParam-->
       <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+      <legacyModeNS>True</legacyModeNS>
     </plugin>
   </gazebo>
 
