@@ -44,7 +44,7 @@
          <cylinder radius="${wheel_props['wheel']['radius']}" length="${wheel_props['wheel']['length']}"/>
         </geometry>
         <material name="red"/>
-      </visual>
+      </visual>  
     </xacro:if>
       <collision>
         <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
@@ -57,7 +57,6 @@
                               l="${wheel_props['wheel']['length']}">
       </xacro:cylinder_inertia> 
     </link>
-    
 
     <joint name="${prefix}_wheel_joint" type="continuous">
       <axis xyz="0 1 0" rpy="0 0 0" />
