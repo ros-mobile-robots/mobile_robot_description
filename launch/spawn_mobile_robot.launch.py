@@ -50,7 +50,7 @@ def generate_launch_description():
 
     spawn_robot_arg = DeclareLaunchArgument(
                     name='spawn_robot',
-                    default_value='false',
+                    default_value='true',
                     description='Flag to spawn the robot or not')
 
     # Compute robot_description string
@@ -76,8 +76,8 @@ def generate_launch_description():
             executable='joint_state_publisher',
             name='joint_state_publisher',
             output='screen',
-            namespace=namespace,
-            parameters=[common_params])
+            namespace=namespace)
+        #     arguments=[robot_description])
 
     rviz_node = Node(
             condition=IfCondition(spawn_robot),
@@ -94,8 +94,8 @@ def generate_launch_description():
     # Add launch actions to the launch description
     launch_description.add_action(namespace_arg)
     launch_description.add_action(spawn_robot_arg)
-    launch_description.add_action(robot_state_publisher)
     launch_description.add_action(joint_state_publisher)
+    launch_description.add_action(robot_state_publisher)
     launch_description.add_action(rviz_node)
 
     return launch_description

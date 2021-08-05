@@ -13,7 +13,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="file://$(find ${package_name})/meshes/sensors/hokuyo.dae" />
+          <mesh filename="file://$(find mobile_robot_description)/meshes/sensors/hokuyo.dae" />
         </geometry>
       </visual>
       <inertial>
